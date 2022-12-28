@@ -364,14 +364,29 @@ header nav ul li a:hover{
         .naj1-oglasi{
                 
                 
-            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             
           }
         
     
         .naj2-oglasi{
+             
+            grid-template-columns: 1fr 1fr 1fr;
             
-            grid-template-columns: 1fr 1fr 1fr 1fr ;
+          }
+      }
+      @media only screen and (min-width: 1500px){
+        .naj1-oglasi{
+                
+                
+            grid-template-columns: 1fr 1fr 1fr  1fr  ;
+            
+          }
+        
+    
+        .naj2-oglasi{
+             
+            grid-template-columns: 1fr 1fr 1fr 1fr  ;
             
           }
       }
