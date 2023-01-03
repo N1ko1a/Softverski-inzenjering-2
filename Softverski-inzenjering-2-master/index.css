@@ -1,0 +1,511 @@
+* {
+    margin: 0;
+    padding: 0;
+   
+  }
+body{
+    background-color: #f3f3f3;
+}
+
+/* navigacija */
+
+header{
+    background-color: black;
+    width: 100%;
+    height: 100px;
+
+}
+header img{
+    width: 50px;
+    height: 50px;
+    border-radius: 127px;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px 0;
+}
+
+header nav ul{
+display: block;
+margin: 0 auto;
+width: fit-content;
+}
+
+header nav ul li{
+    display: inline-block;
+    float: left;
+    list-style: none;
+    padding: 0 16px;
+}
+
+header nav ul li a{
+    text-decoration: none;
+    color: white;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.4s ease-in-out;
+}
+
+header nav ul li a:hover{
+    color: orange;
+}
+
+
+@media only screen and (min-width: 768px){
+    
+    header img{
+        
+       display: flex;
+       float:left;
+        margin-top: 15px;
+        margin-left: 32px;
+        
+    }
+    header nav ul{
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        float: right;
+        }
+    header nav ul li{
+        list-style: none;
+    margin-top: 43px;
+    
+    }
+        
+        
+        
+        
+}
+
+
+
+/*Pretraga*/
+.pretraga{
+    flex-direction: column;
+    justify-content: space-between;
+    flex-direction: column;
+    justify-content: space-between;
+    display: flex;
+    width: auto;
+    border-radius: 37px;
+    margin: 10px;
+    height: auto;
+    background-color: #DEDADA;
+  }
+  .jedan select{
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-top:10px;
+    width: 300px; 
+    height: 40px;
+    border-radius: 10px;
+    background-color: white;
+    border-width: 1px;
+    border-color: black;
+  }
+  .jedan input{
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-top:10px;
+    width: 300px; 
+    height: 40px;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: black;
+  }
+
+  .dva select{
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-top:10px;
+    width: 300px; 
+    height: 40px;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: black;
+  }
+  .godiste{
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-top:10px;
+    width: 300px; 
+    height: 40px;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: black;
+  }
+  .godisteod{
+    display: inline-block;
+    margin: 0 auto;
+    width: 145px;
+    height: 40px;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: black;
+  }
+  .godistedo{
+    display: inline-block;
+    margin: 0 auto;
+    width: 145px;
+    height: 40px;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: black;
+  }
+  
+  
+  .tri input{
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-top:10px;
+    width: 300px; 
+    height: 40px;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: black;
+  }
+
+  .tri select{
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-top:10px;
+    width: 300px; 
+    height: 40px;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: black;
+  }
+
+  .cetri button{
+    text-decoration: none;
+    color: white;
+    font-family: Arial;
+    font-weight: bold;
+    transition: 0.4s ease-in-out;
+
+
+
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-top:10px;
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: orange;
+    border-width: 1px;
+    border-color: black;
+    cursor: pointer;
+  }
+
+  .cetri button:hover{
+    color:black;
+  }
+ 
+  @media only screen and (min-width: 1000px){
+    .pretraga{
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        grid-template-columns: 1fr;
+        padding: 1em;
+        margin: 0 auto;
+        margin-top: 10px;
+        
+        
+        max-width: 1000px;
+        min-height: 400px;
+    }
+    
+    .jedan{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .jedan select{
+        display: inline-block;
+        justify-content: center;
+        align-items: center;
+      }
+      .jedan input{
+        display: inline-block;
+    }
+    .dva{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .dva select{
+        display: inline-block;
+        justify-content: center;
+        align-items: center;
+      }
+      .godiste{
+        display: inline-block;
+        justify-content: center;
+        align-items: center;
+        
+      }
+      .tri{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .tri input{
+        display: inline-block;
+        justify-content: center;
+        align-items: center;
+      }
+    
+      .tri select{
+        display: inline-block;
+        justify-content: center;
+        align-items: center;
+      }
+
+  }
+
+  /*Najpopularnije marke*/
+  .naj1{
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px 0;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+   
+    }
+    .naj1-oglasi{
+        
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        grid-template-columns: 1fr;
+        padding: 1em;
+        margin: 0 auto;
+        width: auto;
+        height: auto;
+      }
+      .oglas{
+        place-self: center;
+        border-radius: 10px;
+        display:inline-block;
+        padding-bottom:10px;
+        margin:20px;
+        position:relative;
+        background-color: #DEDADA;
+        width: 300px;
+        height: 250px;
+        
+      }
+
+  .oglas img{
+    height: 200px;
+    width: 300px;
+    border-radius: 10px;
+   }
+   .oglas p{
+    margin-top: 5px;
+   }
+
+   .naj2{
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px 0;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+   
+    }
+
+    .naj2-oglasi{
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        grid-template-columns: 1fr;
+        padding: 1em;
+        margin: 0 auto;
+        width: auto;
+        height: auto;
+      }
+      
+      @media only screen and (min-width: 768px){
+        
+            .naj1-oglasi{
+                
+                
+                grid-template-columns: 1fr 1fr ;
+                
+              }
+            
+        
+            .naj2-oglasi{
+                
+                grid-template-columns: 1fr 1fr ;
+                
+              }
+        
+      }
+      @media only screen and (min-width: 1000px){
+        .naj1-oglasi{
+                
+                
+            grid-template-columns: 1fr 1fr 1fr;
+            
+          }
+        
+    
+        .naj2-oglasi{
+             
+            grid-template-columns: 1fr 1fr 1fr;
+            
+          }
+      }
+      @media only screen and (min-width: 1500px){
+        .naj1-oglasi{
+                
+                
+            grid-template-columns: 1fr 1fr 1fr  1fr  ;
+            
+          }
+        
+    
+        .naj2-oglasi{
+             
+            grid-template-columns: 1fr 1fr 1fr 1fr  ;
+            
+          }
+      }
+
+
+
+.ime-oglasa h2{
+  display: block;
+  padding: 10px;
+  text-align: center;
+  font-family: Arial;
+  
+    font-weight: bold;
+  
+  
+  
+}
+.slike{
+  display: block;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.glavna-slika img{
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+  height: 200px;
+    width: 300px;
+    margin-left: 10px;
+    border-radius: 10px;
+}
+
+.ostale-slike{
+        display: block;
+        align-items: center;
+        margin: 0 auto;
+        width: auto;
+        height: auto;
+}
+.ostale-slike img{
+  display: inline-block;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 10px;
+  height: 50px;
+    width: 70px;
+    padding: 2px;
+    border-radius: 10px;
+}
+
+.opisi{
+  display: block;
+  justify-content: center;
+  align-items: center;
+  margin: 9 auto;
+  font-family: Arial;
+    font-size: 16px;
+    
+}
+.cena{
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #DEDADA;
+}
+.informacije{
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #DEDADA;
+}
+.dodatne-info{
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #DEDADA;
+}
+
+@media only screen and (min-width: 768px){
+  .glavna-slika img{
+    height: 300px;
+    width: 400px;
+  }
+  .ostale-slike img{
+    height: 70px;
+    width: 90px;
+  }
+  .opisi{
+    font-family: Arial;
+    font-size: 17px;
+    
+  }
+
+  .opisi{
+    display: grid;
+        justify-content: center;
+        align-content: center;
+        grid-template-columns: 1fr;
+        padding: 1em;
+        margin: 0 auto;
+        width: 700px;
+        height: auto;
+
+  }
+
+}
