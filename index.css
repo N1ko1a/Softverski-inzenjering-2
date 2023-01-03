@@ -390,3 +390,122 @@ header nav ul li a:hover{
             
           }
       }
+
+
+
+.ime-oglasa h2{
+  display: block;
+  padding: 10px;
+  text-align: center;
+  font-family: Arial;
+  
+    font-weight: bold;
+  
+  
+  
+}
+.slike{
+  display: block;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.glavna-slika img{
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+  height: 200px;
+    width: 300px;
+    margin-left: 10px;
+    border-radius: 10px;
+}
+
+.ostale-slike{
+        display: block;
+        align-items: center;
+        margin: 0 auto;
+        width: auto;
+        height: auto;
+}
+.ostale-slike img{
+  display: inline-block;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 10px;
+  height: 50px;
+    width: 70px;
+    padding: 2px;
+    border-radius: 10px;
+}
+
+.opisi{
+  display: block;
+  justify-content: center;
+  align-items: center;
+  margin: 9 auto;
+  font-family: Arial;
+    font-size: 16px;
+    
+}
+.cena{
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #DEDADA;
+}
+.informacije{
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #DEDADA;
+}
+.dodatne-info{
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #DEDADA;
+}
+
+@media only screen and (min-width: 768px){
+  .glavna-slika img{
+    height: 300px;
+    width: 400px;
+  }
+  .ostale-slike img{
+    height: 70px;
+    width: 90px;
+  }
+  .opisi{
+    font-family: Arial;
+    font-size: 17px;
+    
+  }
+
+  .opisi{
+    display: grid;
+        justify-content: center;
+        align-content: center;
+        grid-template-columns: 1fr;
+        padding: 1em;
+        margin: 0 auto;
+        width: 700px;
+        height: auto;
+
+  }
+
+}
