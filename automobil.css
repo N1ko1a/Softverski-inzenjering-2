@@ -135,6 +135,17 @@ p{
     border-width: 1px;
     border-color: black;
   }
+  .jedan input{
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-top:10px;
+    width: 300px; 
+    height: 40px;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: black;
+  }
 
 /*Osnovne informacije*/
   .dva p {
