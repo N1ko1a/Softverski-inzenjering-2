@@ -1,0 +1,39 @@
+baza:
+    - Dodata 2 primera automobila
+
+*.css:
+    - reformatiran za izgled
+
+index.css:
+    - object-fit na slikama oglasa postavljen na cover da se ne bi deformisala slika
+    - Pretraga izmene:
+        - uklonjeno .jedan, .dva, .tri... i popravljeni problemi usled izmene
+        - fiksirani width-evi izmenjeni u 100% zbog responsiveness (zbog galaxy fold telefona)
+    - Header izmene:
+        - header width promenjen na 100vw sa 100% zbog kompatibilnosti pretrazivaca
+        - header nav ul je uvek display flex, column na najmanjim ekranima (zbog galaxy fold telefona)
+    - Oglasi izmene:
+        - Width slike i oglasa (ekrani <768px) smanjen sa 300px na 250px (zbog galaxy fold telefona)
+
+db.php:
+    - funkcija getKorisnik(id)
+    - funkcija getOglasList()
+    - funkcija getSpecifikacija(spec, id)    
+
+index.php:
+    - dodate ostale opcije za pretragu na pocetnoj
+    - oglasi se ucitavaju iz baze
+    - pretraga izmenjena iz diva u formu
+    - uklonjene klase jedan dva tri cetiri iz forme
+    - uklonjeni pocetni razmaci u placeholderima u inputu, dodat padding u cssu
+    - izmenjen naziv klase godiste u splitter, iskorisceno i u ceni
+    - dodati name za sve select-ove u formi da bi mogli da se koriste u pretrazi
+    - napravljena pretraga u potpunosti
+
+./slike/*/
+    - Dodati folderi 3 i 4 - svaki automobil ima svoj folder u kom se nalaze njihove slike
+    - poklapace se sa id-om automobila
+
+TODO:
+    - dodati stranicu za svaki oglas pojedinacno
+    - dodati login i register sa sesijom

@@ -24,7 +24,7 @@ class Korisnik {
      * @param string $email
      * @param bool $verifikovan
      */
-    public function __construct(int $id_korisnika, string $ime, string $prezime, string $username, string $sifra, int $rola, string $telefon, string $email, bool $verifikovan) {
+    public function __construct(int $id_korisnika = -1, string $ime = "", string $prezime = "", string $username = "", string $sifra = "", int $rola = 0, string $telefon = "", string $email = "", bool $verifikovan = false) {
     	$this->id_korisnika = $id_korisnika;
     	$this->ime = $ime;
     	$this->prezime = $prezime;
