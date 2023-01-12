@@ -1,5 +1,6 @@
 <?php
 include_once('dbconfig.php');
+include_once('config.php');
 include_once('./dbClasses/specifikacija.php');
 include_once("./dbClasses/boja_vozila.php");
 include_once("./dbClasses/broj_sedista.php");
@@ -15,17 +16,21 @@ include_once("./dbClasses/vrsta_pogona.php");
 include_once("./dbClasses/vrsta_prenosa.php");
 include_once("./dbClasses/oglas.php");
 
-class DBOperacije {
+class DBOperacije
+{
 
     private static $instance = null;
 
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
     // singleton pattern
     /**
-	 * @return DBOperacije
-	 */
-    public static function getInstance(): DBOperacije {
+     * @return DBOperacije
+     */
+    public static function getInstance(): DBOperacije
+    {
         if (self::$instance == null) {
             self::$instance = new DBOperacije();
         }
@@ -36,7 +41,8 @@ class DBOperacije {
     /**
      * @return mysqli
      */
-    private function connect(): mysqli {
+    private function connect(): mysqli
+    {
         $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
         if ($conn->connect_error) {
             die("Neuspesna konekcija " . $conn->connect_error);
@@ -47,7 +53,8 @@ class DBOperacije {
     /**
      * @return void
      */
-    public function test() {
+    public function test()
+    {
         echo "<p>Testiram konekciju...</p>";
 
         $conn = $this->connect();
@@ -58,8 +65,8 @@ class DBOperacije {
 
         $niz = $this->getSpecifikacijaList(new Marka());
 
-        for ($i=0; $i < count($niz); $i++) {
-            echo "<li>".$niz[$i]->getNaziv() . "</li>";
+        for ($i = 0; $i < count($niz); $i++) {
+            echo "<li>" . $niz[$i]->getNaziv() . "</li>";
         }
 
         echo "</ul>";
@@ -71,7 +78,8 @@ class DBOperacije {
      * @param Specifikacija $spec
      * @return void
      */
-    public function ukloniSpecifikaciju(Specifikacija $spec) {
+    public function ukloniSpecifikaciju(Specifikacija $spec)
+    {
         $sql = "DELETE FROM " . $spec->nazivTabele() . " WHERE " . $spec->nazivKoloneId() . "=" . $spec->getId();
         $conn = $this->connect();
 
@@ -82,9 +90,10 @@ class DBOperacije {
      * @param Specifikacija $spec
      * @return void
      */
-    public function izmeniNazivSpecifikacije(Specifikacija $spec, string $noviNaziv) {
+    public function izmeniNazivSpecifikacije(Specifikacija $spec, string $noviNaziv)
+    {
         $sql = "UPDATE " . $spec->nazivTabele() . " 
-                SET " . $spec->nazivKoloneNaziv() . "='" .$noviNaziv . "' 
+                SET " . $spec->nazivKoloneNaziv() . "='" . $noviNaziv . "' 
                 WHERE " . $spec->nazivKoloneId() . "=" . $spec->getId();
         $conn = $this->connect();
 
@@ -98,7 +107,8 @@ class DBOperacije {
      * @param Specifikacija $spec
      * @return array
      */
-    public function getSpecifikacijaList(Specifikacija $spec): array {
+    public function getSpecifikacijaList(Specifikacija $spec): array
+    {
         $sql = "SELECT * FROM " . $spec->nazivTabele();
         $conn = $this->connect();
 
@@ -117,7 +127,8 @@ class DBOperacije {
         return $arr;
     }
 
-    public function getSpecifikacija(Specifikacija $spec, int $id): Specifikacija {
+    public function getSpecifikacija(Specifikacija $spec, int $id): Specifikacija
+    {
         $sql = "SELECT * FROM " . $spec->nazivTabele() . " WHERE " . $spec->nazivKoloneId() . "=$id";
         $conn = $this->connect();
 
@@ -134,7 +145,8 @@ class DBOperacije {
      * @param int $id
      * @return Korisnik
      */
-    public function getKorisnik(int $id): Korisnik {
+    public function getKorisnik(int $id): Korisnik
+    {
         $sql = "SELECT * FROM korisnik WHERE id_korisnika=$id";
         $conn = $this->connect();
 
@@ -143,14 +155,51 @@ class DBOperacije {
             $i = $result->fetch_assoc();
             return new Korisnik($id, $i["ime"], $i["prezime"], $i["username"], $i["sifra"], $i["rola"], $i["telefon"], $i["email"], $i["verifikovan"]);
         }
-        
+
+        return new Korisnik();
+    }
+
+    /**
+     * @param string $username
+     * @return Korisnik
+     */
+    public function getKorisnikPoUsername(string $username): Korisnik
+    {
+        $sql = "SELECT * FROM korisnik WHERE username='$username'";
+        $conn = $this->connect();
+
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            $i = $result->fetch_assoc();
+            return new Korisnik($i["id_korisnika"], $i["ime"], $i["prezime"], $i["username"], $i["sifra"], $i["rola"], $i["telefon"], $i["email"], $i["verifikovan"]);
+        }
+
+        return new Korisnik();
+    }
+
+    /**
+     * @param string $mail
+     * @return Korisnik
+     */
+    public function getKorisnikPoMail(string $mail): Korisnik
+    {
+        $sql = "SELECT * FROM korisnik WHERE email='$mail'";
+        $conn = $this->connect();
+
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            $i = $result->fetch_assoc();
+            return new Korisnik($i["id_korisnika"], $i["ime"], $i["prezime"], $i["username"], $i["sifra"], $i["rola"], $i["telefon"], $i["email"], $i["verifikovan"]);
+        }
+
         return new Korisnik();
     }
 
     /**
      * @return array
      */
-    public function getOglasList(): array {
+    public function getOglasList(): array
+    {
         $sql = "SELECT * FROM oglas ORDER BY datum_postavke DESC";
         $conn = $this->connect();
 
@@ -192,5 +241,58 @@ class DBOperacije {
         return $arr;
     }
 
+    /**
+     * @param int $id
+     * @param string $pwd
+     * @return bool
+     */
+    public function izmeniLozinku(int $id, string $pwd): bool
+    {
+        $enc = password_hash($pwd, PASSWORD_BCRYPT, ["cost" => BCRYPTCOST]);
+
+        $sql = "UPDATE korisnik SET sifra='$enc' WHERE id_korisnika=$id";
+
+        $conn = $this->connect();
+
+        $conn->query($sql);
+
+        $conn->close();
+
+        return true;
+    }
+
+
+    /**
+     * @param string $username
+     * @param string $pwd
+     * @return int
+     */
+    public function proveriKredencijale(string $username, string $pwd): int
+    {
+
+        $pronadjen = $this->getKorisnikPoUsername($username);
+
+        if ($pronadjen->getId() == -1)
+            return -1;
+
+        if (!password_verify($pwd, $pronadjen->getSifra()))
+            return -1;
+
+        return $pronadjen->getId();
+    }
+
+
+    public function napraviNalog(string $ime, string $prezime, string $username, string $sifra, string $telefon, string $email) {
+
+        $enc = password_hash($sifra, PASSWORD_BCRYPT, ["cost" => BCRYPTCOST]);
+
+        $sql = "INSERT INTO korisnik (ime, prezime, username, sifra, rola, telefon, email, verifikovan) VALUES ('$ime', '$prezime', '$username', '$enc', 0, '$telefon', '$email', 0)";
+
+        $conn = $this->connect();
+
+        $conn->query($sql);
+
+        $conn->close();
+
+    }
 }
-?>

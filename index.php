@@ -2,7 +2,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -22,14 +22,30 @@ error_reporting(E_ALL);
         <nav>
             <ul>
                 <li>
-                    <a href="login.html">PRIJAVI SE</a>
+                    <a href="login.php">
+                        <?php 
+                        if (isset($_SESSION["auth"]))
+                            echo "ODJAVI SE";
+                        else
+                            echo "PRIJAVI SE"; ?>
+                    </a>
+                </li>
+                <?php
+                if (!isset($_SESSION["auth"])) {
+                ?>
+                <li>
+                    <a href="register.php">REGISTRUJ SE</a>
                 </li>
                 <li>
-                    <a href="register.html">REGISTRUJ SE</a>
+                    <a href="login.php">POSTAVI OGLAS</a>
                 </li>
+                <?php
+                } else {
+                ?>
                 <li>
-                    <a href="automobili.html">POSTAVI OGLAS</a>
+                    <a href="automobili.php">POSTAVI OGLAS</a>
                 </li>
+                <?php } ?>
             </ul>
         </nav>
     </header>
