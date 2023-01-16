@@ -1,21 +1,21 @@
 <?php
-include_once("specifikacija.php");
+// include_once("specifikacija.php");
 class Klima extends Specifikacija {	/**
 	 * @return string
 	 */
-	public function nazivTabele(): string {
+	public function naziv_tabele(): string {
         return "klima";
 	}
 	/**
 	 * @return string
 	 */
-	public function nazivKoloneId(): string {
+	public function naziv_kolone_id(): string {
 		return "id_klime";
 	}
 	/**
 	 * @return string
 	 */
-	public function nazivKoloneNaziv(): string {
+	public function naziv_kolone_naziv(): string {
 		return "vrsta";
 	}
 }

@@ -16,9 +16,9 @@ index.css:
         - Width slike i oglasa (ekrani <768px) smanjen sa 300px na 250px (zbog galaxy fold telefona)
 
 db.php:
-    - funkcija getKorisnik(id)
-    - funkcija getOglasList()
-    - funkcija getSpecifikacija(spec, id)    
+    - funkcija get_korisnik(id)
+    - funkcija get_oglas_list()
+    - funkcija get_specifikacija(spec, id)    
 
 index.php:
     - dodate ostale opcije za pretragu na pocetnoj

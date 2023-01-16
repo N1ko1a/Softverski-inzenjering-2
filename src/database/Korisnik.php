@@ -39,63 +39,63 @@ class Korisnik {
 	/**
 	 * @return int
 	 */
-	public function getId(): int {
+	public function get_id(): int {
 		return $this->id_korisnika;
 	}
 	
 	/**
 	 * @return string
 	 */
-	public function getIme(): string {
+	public function get_ime(): string {
 		return $this->ime;
 	}
 	
 	/**
 	 * @return string
 	 */
-	public function getPrezime(): string {
+	public function get_prezime(): string {
 		return $this->prezime;
 	}
 	
 	/**
 	 * @return string
 	 */
-	public function getUsername(): string {
+	public function get_username(): string {
 		return $this->username;
 	}
 	
 	/**
 	 * @return string
 	 */
-	public function getSifra(): string {
+	public function get_sifra(): string {
 		return $this->sifra;
 	}
 	
 	/**
 	 * @return int
 	 */
-	public function getRola(): int {
+	public function get_rola(): int {
 		return $this->rola;
 	}
 	
 	/**
 	 * @return string
 	 */
-	public function getTelefon(): string {
+	public function get_telefon(): string {
 		return $this->telefon;
 	}
 	
 	/**
 	 * @return string
 	 */
-	public function getEmail(): string {
+	public function get_email(): string {
 		return $this->email;
 	}
 	
 	/**
 	 * @return bool
 	 */
-	public function getVerifikovan(): bool {
+	public function get_verifikovan(): bool {
 		return $this->verifikovan;
 	}
 

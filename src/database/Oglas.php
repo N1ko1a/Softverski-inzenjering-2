@@ -1,16 +1,17 @@
 <?php
-include_once("boja_vozila.php");
-include_once("broj_sedista.php");
-include_once("broj_vrata.php");
-include_once("emisiona_klasa_motora.php");
-include_once("karoserija.php");
-include_once("klima.php");
-include_once("korisnik.php");
-include_once("marka.php");
-include_once("poreklo_vozila.php");
-include_once("vrsta_goriva.php");
-include_once("vrsta_pogona.php");
-include_once("vrsta_prenosa.php");
+require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Specifikacija.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Boja_vozila.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Broj_sedista.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Broj_vrata.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Emisiona_klasa_motora.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Karoserija.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Klima.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Korisnik.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Marka.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Poreklo_vozila.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Vrsta_goriva.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Vrsta_pogona.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Vrsta_prenosa.php";
 
 class Oglas {
 
@@ -23,17 +24,17 @@ class Oglas {
 	private Karoserija $karoserija;	
 	private int $zapremina_motora;
 	private int $snaga_motora;
-	private EmisionaKlasaMotora $emisiona_klasa_motora;
+	private Emisiona_klasa_motora $emisiona_klasa_motora;
 	private Klima $klima;
 	private float $predjena_kilometraza;
-	private BrojSedista $broj_sedista;
-	private BrojVrata $broj_vrata;
-	private BojaVozila $boja;
-	private PorekloVozila $poreklo_vozila;
+	private Broj_sedista $broj_sedista;
+	private Broj_vrata $broj_vrata;
+	private Boja_vozila $boja;
+	private Poreklo_vozila $poreklo_vozila;
 	private string $fotografije;
-	private VrstaGoriva $vrsta_goriva;
-	private VrstaPrenosa $vrsta_prenosa;
-	private VrstaPogona $vrsta_pogona;
+	private Vrsta_goriva $vrsta_goriva;
+	private Vrsta_prenosa $vrsta_prenosa;
+	private Vrsta_pogona $vrsta_pogona;
 	private DateTime $datum_postavke;
 	private string $opis_automobila;
 	private bool $aktivan;
@@ -49,22 +50,22 @@ class Oglas {
 	 * @param Karoserija $karoserija
 	 * @param int $zapremina_motora
 	 * @param int $snaga_motora
-	 * @param EmisionaKlasaMotora $emisiona_klasa_motora
+	 * @param Emisiona_klasa_motora $emisiona_klasa_motora
 	 * @param Klima $klima
 	 * @param float $predjena_kilometraza
-	 * @param BrojSedista $broj_sedista
-	 * @param BrojVrata $broj_vrata
-	 * @param BojaVozila $boja
-	 * @param PorekloVozila $poreklo_vozila
+	 * @param Broj_sedista $broj_sedista
+	 * @param Broj_vrata $broj_vrata
+	 * @param Boja_vozila $boja
+	 * @param Poreklo_vozila $poreklo_vozila
 	 * @param string $fotografije
-	 * @param VrstaGoriva $vrsta_goriva
-	 * @param VrstaPrenosa $vrsta_prenosa
-	 * @param VrstaPogona $vrsta_pogona
+	 * @param Vrsta_goriva $vrsta_goriva
+	 * @param Vrsta_prenosa $vrsta_prenosa
+	 * @param Vrsta_pogona $vrsta_pogona
 	 * @param DateTime $datum_postavke
 	 * @param string $opis_automobila
 	 * @param bool $aktivan
 	 */
-	public function __construct(int $id_oglasa, Korisnik $vlasnik, Marka $marka, string $model, int $godina_proizvodnje, float $cena, Karoserija $karoserija, int $zapremina_motora, int $snaga_motora, EmisionaKlasaMotora $emisiona_klasa_motora, Klima $klima, float $predjena_kilometraza, BrojSedista $broj_sedista, BrojVrata $broj_vrata, BojaVozila $boja, PorekloVozila $poreklo_vozila, string $fotografije, VrstaGoriva $vrsta_goriva, VrstaPrenosa $vrsta_prenosa, VrstaPogona $vrsta_pogona, DateTime $datum_postavke, string $opis_automobila, bool $aktivan) {
+	public function __construct(int $id_oglasa, Korisnik $vlasnik, Marka $marka, string $model, int $godina_proizvodnje, float $cena, Karoserija $karoserija, int $zapremina_motora, int $snaga_motora, Emisiona_klasa_motora $emisiona_klasa_motora, Klima $klima, float $predjena_kilometraza, Broj_sedista $broj_sedista, Broj_vrata $broj_vrata, Boja_vozila $boja, Poreklo_vozila $poreklo_vozila, string $fotografije, Vrsta_goriva $vrsta_goriva, Vrsta_prenosa $vrsta_prenosa, Vrsta_pogona $vrsta_pogona, DateTime $datum_postavke, string $opis_automobila, bool $aktivan) {
 		$this->id_oglasa = $id_oglasa;
 		$this->vlasnik = $vlasnik;
 		$this->marka = $marka;
@@ -93,7 +94,7 @@ class Oglas {
 	/**
 	 * @return int
 	 */
-	public function getId(): int {
+	public function get_id(): int {
 		return $this->id_oglasa;
 	}
 
@@ -154,9 +155,9 @@ class Oglas {
 	}
 	
 	/**
-	 * @return EmisionaKlasaMotora
+	 * @return Emisiona_klasa_motora
 	 */
-	public function getEmisiona_klasa_motora(): EmisionaKlasaMotora {
+	public function getEmisiona_klasa_motora(): Emisiona_klasa_motora {
 		return $this->emisiona_klasa_motora;
 	}
 	
@@ -175,30 +176,30 @@ class Oglas {
 	}
 	
 	/**
-	 * @return BrojSedista
+	 * @return Broj_sedista
 	 */
-	public function getBroj_sedista(): BrojSedista {
+	public function getBroj_sedista(): Broj_sedista {
 		return $this->broj_sedista;
 	}
 	
 	/**
-	 * @return BrojVrata
+	 * @return Broj_vrata
 	 */
-	public function getBroj_vrata(): BrojVrata {
+	public function getBroj_vrata(): Broj_vrata {
 		return $this->broj_vrata;
 	}
 	
 	/**
-	 * @return BojaVozila
+	 * @return Boja_vozila
 	 */
-	public function getBoja(): BojaVozila {
+	public function getBoja(): Boja_vozila {
 		return $this->boja;
 	}
 	
 	/**
-	 * @return PorekloVozila
+	 * @return Poreklo_vozila
 	 */
-	public function getPoreklo_vozila(): PorekloVozila {
+	public function getPoreklo_vozila(): Poreklo_vozila {
 		return $this->poreklo_vozila;
 	}
 	
@@ -210,23 +211,23 @@ class Oglas {
 	}
 	
 	/**
-	 * @return VrstaGoriva
+	 * @return Vrsta_goriva
 	 */
-	public function getVrsta_goriva(): VrstaGoriva {
+	public function getVrsta_goriva(): Vrsta_goriva {
 		return $this->vrsta_goriva;
 	}
 	
 	/**
-	 * @return VrstaPrenosa
+	 * @return Vrsta_prenosa
 	 */
-	public function getVrsta_prenosa(): VrstaPrenosa {
+	public function getVrsta_prenosa(): Vrsta_prenosa {
 		return $this->vrsta_prenosa;
 	}
 	
 	/**
-	 * @return VrstaPogona
+	 * @return Vrsta_pogona
 	 */
-	public function getVrsta_pogona(): VrstaPogona {
+	public function getVrsta_pogona(): Vrsta_pogona {
 		return $this->vrsta_pogona;
 	}
 	

@@ -38,7 +38,7 @@ function proveri_inpute($ime, $prezime, $email, $username, $password, $telefon)
     return true;
 }
 
-include_once('db.php');
+include_once('Database_operacije.php');
 if (isset($_POST["submit"]) && isset($_POST["ime"]) && isset($_POST["prezime"]) && isset($_POST["email"]) && isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["repassword"]) && isset($_POST["telefon"])) {
 
     $ime = $_POST["ime"];
@@ -53,18 +53,18 @@ if (isset($_POST["submit"]) && isset($_POST["ime"]) && isset($_POST["prezime"]) 
         if ($password != $repassword)
             $lozinke_se_ne_poklapaju = true;
 
-        $korisnik = DBOperacije::getInstance()->getKorisnikPoUsername($username);
+        $korisnik = Database_operacije::get_instance()->get_korisnik_po_username($username);
 
-        if ($korisnik->getId() != -1)
+        if ($korisnik->get_id() != -1)
             $postoji_korisnik_username = true;
 
-        $korisnik = DBOperacije::getInstance()->getKorisnikPoMail($email);
+        $korisnik = Database_operacije::get_instance()->get_korisnik_po_mail($email);
 
-        if ($korisnik->getId() != -1)
+        if ($korisnik->get_id() != -1)
             $postoji_korisnik_email = true;
         
         if (!$postoji_korisnik_email && !$postoji_korisnik_username && !$lozinke_se_ne_poklapaju) {
-            DBOperacije::getInstance()->napraviNalog($ime, $prezime, $username, $password, $telefon, $email);
+            Database_operacije::get_instance()->napravi_nalog($ime, $prezime, $username, $password, $telefon, $email);
 
             header('Location: login.php?reg=1');
             exit;

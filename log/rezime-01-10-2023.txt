@@ -13,10 +13,10 @@ U bazi:
 ./test.php:
     - Testira konekciju sa bazom
 
-./dbClasses/:
+./database_classes/:
     - Sadrzi sve tabele u bazi i svaki objekat klase predstavlja pojedinacni red
     - Svaka klasa specifikacije (npr boja, broj_sedista...) prosiruje klasu Specifikacija 
-    koja sadrzi protected id, naziv i abstraktnu funkciju nazivTabele()
+    koja sadrzi protected id, naziv i abstraktnu funkciju naziv_tabele()
 
 ./slike/:
     - Uklonjeni fajlovi CPU-Z i aida64 programa
