@@ -252,5 +252,3 @@ class Oglas {
 		return $this->aktivan;
 	}
 }
-
-?>

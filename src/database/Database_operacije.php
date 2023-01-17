@@ -2,20 +2,7 @@
 require_once $_SERVER["DOCUMENT_ROOT"] . '/../config/dbconfig.php';
 require_once $_SERVER["DOCUMENT_ROOT"] . '/../config/config.php';
 require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Oglas.php";
-
-// require_once $_SERVER["DOCUMENT_ROOT"] . '/../src/database/Specifikacija.php';
-// require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Boja_vozila.php";
-// require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Broj_sedista.php";
-// require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Broj_vrata.php";
-// require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Emisiona_klasa_motora.php";
-// require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Karoserija.php";
-// require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Klima.php";
-// require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Korisnik.php";
-// require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Marka.php";
-// require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Poreklo_vozila.php";
-// require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Vrsta_goriva.php";
-// require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Vrsta_pogona.php";
-// require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Vrsta_prenosa.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Oglas_input_builder.php";
 
 class Database_operacije
 {
@@ -199,32 +186,34 @@ class Database_operacije
 
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
+            $oglas_input_builder = new Oglas_input_builder();
             while ($i = $result->fetch_assoc()) {
-                $id_oglasa = $i["id_oglasa"];
-                $vlasnik = $this->get_korisnik($i["vlasnik"]);
-                $marka = $this->get_specifikacija(new Marka(), $i["marka"]);
-                $model = $i["model"];
-                $godina_proizvodnje = $i["godina_proizvodnje"];
-                $cena = $i["cena"];
-                $karoserija = $this->get_specifikacija(new Karoserija(), $i["karoserija"]);
-                $zapremina_motora = $i["zapremina_motora(ccm)"];
-                $snaga_motora = $i["snaga_motora(kw)"];
-                $emisiona_klasa_motora = $this->get_specifikacija(new Emisiona_klasa_motora(), $i["emisiona_klasa_motora"]);
-                $klima = $this->get_specifikacija(new Klima(), $i["klima"]);
-                $predjena_kilometraza = $i["predjena_kilometraza"];
-                $broj_sedista = $this->get_specifikacija(new Broj_sedista(), $i["broj_sedista"]);
-                $broj_vrata = $this->get_specifikacija(new Broj_vrata(), $i["broj_vrata"]);
-                $boja = $this->get_specifikacija(new Boja_vozila(), $i["boja"]);
-                $poreklo_vozila = $this->get_specifikacija(new Poreklo_vozila(), $i["poreklo_vozila"]);
-                $fotografije = $i["fotografije"];
-                $vrsta_goriva = $this->get_specifikacija(new Vrsta_goriva(), $i["vrsta_goriva"]);
-                $vrsta_prenosa = $this->get_specifikacija(new Vrsta_prenosa(), $i["vrsta_prenosa"]);
-                $vrsta_pogona = $this->get_specifikacija(new Vrsta_pogona(), $i["vrsta_pogona"]);
-                $datum_postavke = new DateTime($i["datum_postavke"]);
-                $opis_automobila = $i["opis_automobila"];
-                $aktivan = $i["aktivan"];
+                $oglas = $oglas_input_builder->set_id($i["id_oglasa"])
+                ->set_vlasnik($i["vlasnik"])
+                ->set_marka($i["marka"])
+                ->set_model($i["model"])
+                ->set_godina_proizvodnje($i["godina_proizvodnje"])
+                ->set_cena($i["cena"])
+                ->set_karoserija($i["karoserija"])
+                ->set_zapremina_motora($i["zapremina_motora(ccm)"])
+                ->set_snaga_motora($i["snaga_motora(kw)"])
+                ->set_emisiona_klasa_motora($i["emisiona_klasa_motora"])
+                ->set_klima($i["klima"])
+                ->set_predjena_kilometraza($i["predjena_kilometraza"])
+                ->set_broj_sedista($i["broj_sedista"])
+                ->set_broj_vrata($i["broj_vrata"])
+                ->set_boja($i["boja"])
+                ->set_poreklo_vozila($i["poreklo_vozila"])
+                ->set_fotografije($i["fotografije"])
+                ->set_vrsta_goriva($i["vrsta_goriva"])
+                ->set_vrsta_prenosa($i["vrsta_prenosa"])
+                ->set_vrsta_pogona($i["vrsta_pogona"])
+                ->set_datum_postavke($i["datum_postavke"])
+                ->set_opis_automobila($i["opis_automobila"])
+                ->set_aktivan($i["aktivan"])
+                ->build();
 
-                array_push($arr, new Oglas($id_oglasa, $vlasnik, $marka, $model, $godina_proizvodnje, $cena, $karoserija, $zapremina_motora, $snaga_motora, $emisiona_klasa_motora, $klima, $predjena_kilometraza, $broj_sedista, $broj_vrata, $boja, $poreklo_vozila, $fotografije, $vrsta_goriva, $vrsta_prenosa, $vrsta_pogona, $datum_postavke, $opis_automobila, $aktivan));
+                array_push($arr, $oglas);
             }
         }
 

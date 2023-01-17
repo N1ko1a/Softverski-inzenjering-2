@@ -3,7 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-include_once("Database_operacije.php");
+require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Database_operacije.php";
 
 $dbo = Database_operacije::get_instance();
 

@@ -1,7 +1,31 @@
+@import url(https://fonts.googleapis.com/css?family=Exo:100,200,400);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
+
 * {
   margin: 0;
   padding: 0;
 }
+
+html {
+  height: fill-available;
+  height: -webkit-fill-available;
+}
+
+.bg-1 {
+  margin: 0;
+  padding: 0;
+  background: rgb(40,40,40);
+  background: linear-gradient(158deg, rgba(40,40,40,1) 0%, rgba(30,30,30,1) 100%);
+
+  color: #fff;
+  font-family: Arial;
+  font-size: 12px;
+
+  min-height: 100vh;
+  min-height: fill-available;
+  min-height: -webkit-fill-available;
+}
+
 body {
   background-color: #f3f3f3;
 }
@@ -51,31 +75,6 @@ header nav ul li a {
 
 header nav ul li a:hover {
   color: orange;
-}
-
-@media only screen and (min-width: 450px) {
-  header nav ul {
-    flex-direction: row;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  header img {
-    display: flex;
-    float: left;
-    margin-top: 15px;
-    margin-left: 32px;
-  }
-  header nav ul {
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    float: right;
-  }
-  header nav ul li {
-    list-style: none;
-    margin-top: 43px;
-  }
 }
 
 /*Pretraga*/
@@ -151,22 +150,6 @@ header nav ul li a:hover {
   color: black;
 }
 
-@media only screen and (min-width: 1000px) {
-  .pretraga {
-    display: grid;
-    justify-content: center;
-    align-content: center;
-    grid-template-columns: 1fr 1fr 1fr;
-    padding: 1em;
-    margin: 0 auto;
-    margin-top: 10px;
-
-    max-width: 1000px;
-    min-height: 400px;
-  }
-
-}
-
 /*Najpopularnije marke*/
 .naj1 {
   margin: 0 auto;
@@ -233,38 +216,6 @@ header nav ul li a:hover {
   height: auto;
 }
 
-@media only screen and (min-width: 768px) {
-  .naj1-oglasi {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .naj2-oglasi {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .oglas, .oglas img {
-    width: 300px;
-  }
-
-}
-@media only screen and (min-width: 1000px) {
-  .naj1-oglasi {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-
-  .naj2-oglasi {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
-@media only screen and (min-width: 1500px) {
-  .naj1-oglasi {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-
-  .naj2-oglasi {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-}
 
 .ime-oglasa h2 {
   display: block;
@@ -349,6 +300,178 @@ header nav ul li a:hover {
   padding: 5px;
   border-radius: 10px;
   background-color: #dedada;
+}
+
+section {
+  margin: 0 auto;
+  max-width: 500px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+section h1 {
+  width: max-content;
+  white-space: nowrap;
+  color: orange;
+  font-weight: bold;
+  font-family: "Exo", sans-serif;
+  font-size: 35px;
+  text-align: center;
+}
+
+.login {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+a span {
+  color: orange;
+  text-decoration: underline;
+  margin: 10px 0;
+}
+
+.login input {
+  box-sizing: border-box;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 2px;
+  color: #fff;
+  width: 100%;
+  font-family: "Exo", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 4px;
+  margin: 10px 0;
+}
+
+
+.login input[type="submit"] {
+  text-decoration: none;
+  color: white;
+  font-family: Arial;
+  font-weight: bold;
+  transition: 0.4s ease-in-out;
+
+  height: 35px;
+  background-color: orange;
+  border-color: black;
+  cursor: pointer;
+  border-radius: 2px;
+  border-radius: 10px;
+
+  font-size: 16px;
+
+  padding: 6px;
+  margin: 30px 0;
+}
+
+.login input[type="submit"]:hover {
+  color: black;
+}
+
+.login input[type="submit"]:active {
+  opacity: 0.6;
+}
+
+.login input:focus {
+  outline: none;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+
+.login input[type="button"]:focus {
+  outline: none;
+}
+
+.login::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.login::-moz-input-placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+@media only screen and (min-width: 768px) {
+  .naj1-oglasi {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .naj2-oglasi {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .oglas, .oglas img {
+    width: 300px;
+  }
+
+}
+
+@media only screen and (min-width: 1000px) {
+  .naj1-oglasi {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .naj2-oglasi {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media only screen and (min-width: 1500px) {
+  .naj1-oglasi {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .naj2-oglasi {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+
+@media only screen and (min-width: 1000px) {
+  .pretraga {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 1em;
+    margin: 0 auto;
+    margin-top: 10px;
+
+    max-width: 1000px;
+    min-height: 400px;
+  }
+}
+
+@media only screen and (min-width: 450px) {
+  header nav ul {
+    flex-direction: row;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  header img {
+    display: flex;
+    float: left;
+    margin-top: 15px;
+    margin-left: 32px;
+  }
+  header nav ul {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    float: right;
+  }
+  header nav ul li {
+    list-style: none;
+    margin-top: 43px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
