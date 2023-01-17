@@ -53,11 +53,11 @@ session_start();
         <select name="marka">
             <option value="" disabled selected hidden>Marka vozila</option>
             <?php
-            include_once("db.php");
-            $marke = DBOperacije::getInstance()->getSpecifikacijaList(new Marka());
+            include_once("Database_operacije.php");
+            $marke = Database_operacije::get_instance()->get_specifikacija_list(new Marka());
             for ($i = 0; $i < count($marke); $i++) {
             ?>
-                <option value="<?php echo $marke[$i]->getId(); ?>"><?php echo $marke[$i]->getNaziv(); ?></option>
+                <option value="<?php echo $marke[$i]->get_id(); ?>"><?php echo $marke[$i]->getNaziv(); ?></option>
             <?php
             }
             ?>
@@ -70,11 +70,11 @@ session_start();
         <select name="karoserija">
             <option value="" disabled selected hidden>Karoserija</option>
             <?php
-            include_once("db.php");
-            $list = DBOperacije::getInstance()->getSpecifikacijaList(new Karoserija());
+            include_once("Database_operacije.php");
+            $list = Database_operacije::get_instance()->get_specifikacija_list(new Karoserija());
             for ($i = 0; $i < count($list); $i++) {
             ?>
-                <option value="<?php echo $list[$i]->getId(); ?>"><?php echo $list[$i]->getNaziv(); ?></option>
+                <option value="<?php echo $list[$i]->get_id(); ?>"><?php echo $list[$i]->getNaziv(); ?></option>
             <?php
             }
             ?>
@@ -86,11 +86,11 @@ session_start();
         <select name="vrsta_goriva">
             <option value="" disabled selected hidden>Gorivo</option>
             <?php
-            include_once("db.php");
-            $list = DBOperacije::getInstance()->getSpecifikacijaList(new VrstaGoriva());
+            include_once("Database_operacije.php");
+            $list = Database_operacije::get_instance()->get_specifikacija_list(new Vrsta_goriva());
             for ($i = 0; $i < count($list); $i++) {
             ?>
-                <option value="<?php echo $list[$i]->getId(); ?>"><?php echo $list[$i]->getNaziv(); ?></option>
+                <option value="<?php echo $list[$i]->get_id(); ?>"><?php echo $list[$i]->getNaziv(); ?></option>
             <?php
             }
             ?>
@@ -99,11 +99,11 @@ session_start();
         <select name="boja_vozila">
             <option value="" disabled selected hidden>Boja vozila</option>
             <?php
-            include_once("db.php");
-            $list = DBOperacije::getInstance()->getSpecifikacijaList(new BojaVozila());
+            include_once("Database_operacije.php");
+            $list = Database_operacije::get_instance()->get_specifikacija_list(new Boja_vozila());
             for ($i = 0; $i < count($list); $i++) {
             ?>
-                <option value="<?php echo $list[$i]->getId(); ?>"><?php echo $list[$i]->getNaziv(); ?></option>
+                <option value="<?php echo $list[$i]->get_id(); ?>"><?php echo $list[$i]->getNaziv(); ?></option>
             <?php
             }
             ?>
@@ -111,11 +111,11 @@ session_start();
         <select name="vrsta_prenosa">
             <option value="" disabled selected hidden>Vrsta prenosa</option>
             <?php
-            include_once("db.php");
-            $list = DBOperacije::getInstance()->getSpecifikacijaList(new VrstaPrenosa());
+            include_once("Database_operacije.php");
+            $list = Database_operacije::get_instance()->get_specifikacija_list(new Vrsta_prenosa());
             for ($i = 0; $i < count($list); $i++) {
             ?>
-                <option value="<?php echo $list[$i]->getId(); ?>"><?php echo $list[$i]->getNaziv(); ?></option>
+                <option value="<?php echo $list[$i]->get_id(); ?>"><?php echo $list[$i]->getNaziv(); ?></option>
             <?php
             }
             ?>
@@ -125,11 +125,11 @@ session_start();
         <select name="broj_vrata">
             <option value="" disabled selected hidden>Broj vrata</option>
             <?php
-            include_once("db.php");
-            $list = DBOperacije::getInstance()->getSpecifikacijaList(new BrojVrata());
+            include_once("Database_operacije.php");
+            $list = Database_operacije::get_instance()->get_specifikacija_list(new Broj_vrata());
             for ($i = 0; $i < count($list); $i++) {
             ?>
-                <option value="<?php echo $list[$i]->getId(); ?>"><?php echo $list[$i]->getNaziv(); ?></option>
+                <option value="<?php echo $list[$i]->get_id(); ?>"><?php echo $list[$i]->getNaziv(); ?></option>
             <?php
             }
             ?>
@@ -139,11 +139,11 @@ session_start();
         <select name="broj_sedista">
             <option value="" disabled selected hidden>Broj sedista</option>
             <?php
-            include_once("db.php");
-            $list = DBOperacije::getInstance()->getSpecifikacijaList(new BrojSedista());
+            include_once("Database_operacije.php");
+            $list = Database_operacije::get_instance()->get_specifikacija_list(new Broj_sedista());
             for ($i = 0; $i < count($list); $i++) {
             ?>
-                <option value="<?php echo $list[$i]->getId(); ?>"><?php echo $list[$i]->getNaziv(); ?></option>
+                <option value="<?php echo $list[$i]->get_id(); ?>"><?php echo $list[$i]->getNaziv(); ?></option>
             <?php
             }
             ?>
@@ -153,11 +153,11 @@ session_start();
         <select name="emisiona_klasa_motora">
             <option value="" disabled selected hidden>Emisiona klasa motora</option>
             <?php
-            include_once("db.php");
-            $list = DBOperacije::getInstance()->getSpecifikacijaList(new EmisionaKlasaMotora());
+            include_once("Database_operacije.php");
+            $list = Database_operacije::get_instance()->get_specifikacija_list(new Emisiona_klasa_motora());
             for ($i = 0; $i < count($list); $i++) {
             ?>
-                <option value="<?php echo $list[$i]->getId(); ?>"><?php echo $list[$i]->getNaziv(); ?></option>
+                <option value="<?php echo $list[$i]->get_id(); ?>"><?php echo $list[$i]->getNaziv(); ?></option>
             <?php
             }
             ?>
@@ -167,11 +167,11 @@ session_start();
         <select name="klima">
             <option value="" disabled selected hidden>Klima</option>
             <?php
-            include_once("db.php");
-            $list = DBOperacije::getInstance()->getSpecifikacijaList(new Klima());
+            include_once("Database_operacije.php");
+            $list = Database_operacije::get_instance()->get_specifikacija_list(new Klima());
             for ($i = 0; $i < count($list); $i++) {
             ?>
-                <option value="<?php echo $list[$i]->getId(); ?>"><?php echo $list[$i]->getNaziv(); ?></option>
+                <option value="<?php echo $list[$i]->get_id(); ?>"><?php echo $list[$i]->getNaziv(); ?></option>
             <?php
             }
             ?>
@@ -181,11 +181,11 @@ session_start();
         <select name="poreklo_vozila">
             <option value="" disabled selected hidden>Poreklo vozila</option>
             <?php
-            include_once("db.php");
-            $list = DBOperacije::getInstance()->getSpecifikacijaList(new PorekloVozila());
+            include_once("Database_operacije.php");
+            $list = Database_operacije::get_instance()->get_specifikacija_list(new Poreklo_vozila());
             for ($i = 0; $i < count($list); $i++) {
             ?>
-                <option value="<?php echo $list[$i]->getId(); ?>"><?php echo $list[$i]->getNaziv(); ?></option>
+                <option value="<?php echo $list[$i]->get_id(); ?>"><?php echo $list[$i]->getNaziv(); ?></option>
             <?php
             }
             ?>
@@ -195,11 +195,11 @@ session_start();
         <select name="vrsta_pogona">
             <option value="" disabled selected hidden>Vrsta pogona</option>
             <?php
-            include_once("db.php");
-            $list = DBOperacije::getInstance()->getSpecifikacijaList(new VrstaPogona());
+            include_once("Database_operacije.php");
+            $list = Database_operacije::get_instance()->get_specifikacija_list(new Vrsta_pogona());
             for ($i = 0; $i < count($list); $i++) {
             ?>
-                <option value="<?php echo $list[$i]->getId(); ?>"><?php echo $list[$i]->getNaziv(); ?></option>
+                <option value="<?php echo $list[$i]->get_id(); ?>"><?php echo $list[$i]->getNaziv(); ?></option>
             <?php
             }
             ?>
@@ -209,55 +209,18 @@ session_start();
         <button class="pretrazi">PRETRAZI</button>
     </form>
 
-    <!-- <div class="naj1">
-        <h2>NAJPOPULARNIJE MARKE VOZILA</h2>
-    </div>
-
-    <div class="naj1-oglasi">
-        <div class="oglas">
-            <a target="_blank" href="oglas.html"><img src="slike/20a3297e075c-1920x1080.jpg" alt="nema"></a>
-            <p>Volkswagen Polo 1.4 TDI</p>
-            <p>2.350e</p>
-        </div>
-        <div class="oglas">
-            <img src="slike/20a3297e075c-1920x1080.jpg" alt="nema">
-            <p>Volkswagen Polo 1.4 TDI</p>
-            <p>2.350e</p>
-        </div>
-        <div class="oglas">
-            <img src="slike/20a3297e075c-1920x1080.jpg" alt="nema">
-            <p>Volkswagen Polo 1.4 TDI</p>
-            <p>2.350e</p>
-        </div>
-        <div class="oglas">
-            <img src="slike/20a3297e075c-1920x1080.jpg" alt="nema">
-            <p>Volkswagen Polo 1.4 TDI</p>
-            <p>2.350e</p>
-        </div>
-        <div class="oglas">
-            <img src="slike/20a3297e075c-1920x1080.jpg" alt="nema">
-            <p>Volkswagen Polo 1.4 TDI</p>
-            <p>2.350e</p>
-        </div>
-        <div class="oglas">
-            <img src="slike/20a3297e075c-1920x1080.jpg" alt="nema">
-            <p>Volkswagen Polo 1.4 TDI</p>
-            <p>2.350e</p>
-        </div>
-    </div> -->
-
     <div class="naj2">
         <h2>NAJNOVIJI OGLASI</h2>
     </div>
     <div class="naj2-oglasi">
         <?php
-        include_once("db.php");
-        $list = DBOperacije::getInstance()->getOglasList();
+        include_once("Database_operacije.php");
+        $list = Database_operacije::get_instance()->get_oglas_list();
         for ($i = 0; $i < count($list); $i++) {
             $oglas = $list[$i];
             if ($oglas->getAktivan() == 0) continue;
             if (isset($_GET["marka"]) && $_GET["marka"] != "") {
-                if ($oglas->getMarka()->getId() != intval($_GET["marka"]))
+                if ($oglas->getMarka()->get_id() != intval($_GET["marka"]))
                     continue;
             }
 
@@ -281,7 +244,7 @@ session_start();
             
 
             if (isset($_GET["karoserija"]) && $_GET["karoserija"] != "") 
-                if ($oglas->getKaroserija()->getId() != intval($_GET["karoserija"]))
+                if ($oglas->getKaroserija()->get_id() != intval($_GET["karoserija"]))
                     continue;
             
 
@@ -296,7 +259,7 @@ session_start();
             
 
             if (isset($_GET["vrsta_goriva"]) && $_GET["vrsta_goriva"] != "") 
-                if ($oglas->getVrsta_goriva()->getId() != intval($_GET["vrsta_goriva"]))
+                if ($oglas->getVrsta_goriva()->get_id() != intval($_GET["vrsta_goriva"]))
                     continue;
             
 
@@ -306,47 +269,47 @@ session_start();
             
 
             if (isset($_GET["boja_vozila"]) && $_GET["boja_vozila"] != "") 
-                if ($oglas->getBoja()->getId() != intval($_GET["boja_vozila"]))
+                if ($oglas->getBoja()->get_id() != intval($_GET["boja_vozila"]))
                     continue;
             
 
             if (isset($_GET["vrsta_prenosa"]) && $_GET["vrsta_prenosa"] != "") 
-                if ($oglas->getVrsta_prenosa()->getId() != intval($_GET["vrsta_prenosa"]))
+                if ($oglas->getVrsta_prenosa()->get_id() != intval($_GET["vrsta_prenosa"]))
                     continue;
             
 
             if (isset($_GET["vrsta_prenosa"]) && $_GET["vrsta_prenosa"] != "") 
-                if ($oglas->getVrsta_prenosa()->getId() != intval($_GET["vrsta_prenosa"]))
+                if ($oglas->getVrsta_prenosa()->get_id() != intval($_GET["vrsta_prenosa"]))
                     continue;
             
 
             if (isset($_GET["broj_vrata"]) && $_GET["broj_vrata"] != "") 
-                if ($oglas->getBroj_vrata()->getId() != intval($_GET["broj_vrata"]))
+                if ($oglas->getBroj_vrata()->get_id() != intval($_GET["broj_vrata"]))
                     continue;
             
 
             if (isset($_GET["broj_sedista"]) && $_GET["broj_sedista"] != "") 
-                if ($oglas->getBroj_sedista()->getId() != intval($_GET["broj_sedista"]))
+                if ($oglas->getBroj_sedista()->get_id() != intval($_GET["broj_sedista"]))
                     continue;
             
 
             if (isset($_GET["emisiona_klasa_motora"]) && $_GET["emisiona_klasa_motora"] != "") 
-                if ($oglas->getEmisiona_klasa_motora()->getId() != intval($_GET["emisiona_klasa_motora"]))
+                if ($oglas->getEmisiona_klasa_motora()->get_id() != intval($_GET["emisiona_klasa_motora"]))
                     continue;
             
 
             if (isset($_GET["klima"]) && $_GET["klima"] != "") 
-                if ($oglas->getKlima()->getId() != intval($_GET["klima"]))
+                if ($oglas->getKlima()->get_id() != intval($_GET["klima"]))
                     continue;
             
 
             if (isset($_GET["poreklo_vozila"]) && $_GET["poreklo_vozila"] != "") 
-                if ($oglas->getPoreklo_vozila()->getId() != intval($_GET["poreklo_vozila"]))
+                if ($oglas->getPoreklo_vozila()->get_id() != intval($_GET["poreklo_vozila"]))
                     continue;
             
 
             if (isset($_GET["vrsta_pogona"]) && $_GET["vrsta_pogona"] != "") 
-                if ($oglas->getVrsta_pogona()->getId() != intval($_GET["vrsta_pogona"]))
+                if ($oglas->getVrsta_pogona()->get_id() != intval($_GET["vrsta_pogona"]))
                     continue;
             
 

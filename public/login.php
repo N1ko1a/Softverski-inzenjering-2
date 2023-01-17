@@ -10,7 +10,7 @@ if (isset($_SESSION["auth"])) {
     exit;
 };
 
-include_once('db.php');
+include_once('Database_operacije.php');
 if (isset($_POST["submit"]) && isset($_POST["username"]) && isset($_POST["password"])) {
 
     /* "dezinfekcija" username (prima user.name, user, user1.name2.name3 i slicno)
@@ -23,12 +23,12 @@ if (isset($_POST["submit"]) && isset($_POST["username"]) && isset($_POST["passwo
         $username = substr($username, 0, 40);
     }
 
-    /* lozinku ne moramo da dezinfikujemo jer u proveriKredencijale se proverava sa 
+    /* lozinku ne moramo da dezinfikujemo jer u proveri_kredencijale se proverava sa 
      * hesiranom lozinkom i ne ulazi direkt u sql kod kao username
      */
     $password = $_POST["password"];
 
-    $id = DBOperacije::getInstance()->proveriKredencijale($username, $password);
+    $id = Database_operacije::get_instance()->proveri_kredencijale($username, $password);
 
     if ($id != -1) {
         $_SESSION["auth"] = $id;

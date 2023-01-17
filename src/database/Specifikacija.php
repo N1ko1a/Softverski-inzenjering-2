@@ -15,7 +15,7 @@ abstract class Specifikacija {
 	/**
 	 * @return int
 	 */
-	public function getId(): int {
+	public function get_id(): int {
 		return $this->id;
 	}
 	
@@ -26,8 +26,8 @@ abstract class Specifikacija {
 		return $this->naziv;
 	}
 
-	abstract public function nazivTabele(): string;
-	abstract public function nazivKoloneId(): string;
-	abstract public function nazivKoloneNaziv(): string;
+	abstract public function naziv_tabele(): string;
+	abstract public function naziv_kolone_id(): string;
+	abstract public function naziv_kolone_naziv(): string;
 }
 ?>
