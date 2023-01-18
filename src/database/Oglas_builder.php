@@ -1,29 +1,31 @@
 <?php
 /**
  * Interfejs Oglas_builder za pravljenje oglasa od inputa
+ * Builder pattern
  */
 interface Oglas_builder {
-    public function setId(int $id): Oglas_builder;
-    public function setVlasnik(Korisnik $korisnik): Oglas_builder;
-    public function setMarka(string $marka): Oglas_builder;
-    public function setModel(string $model): Oglas_builder;
-    public function setGodinaProizvodnje(int $godina_proizvodnje): Oglas_builder;
-    public function setCena(float $cena): Oglas_builder;
-    public function setZapreminaMotora(int $zapremina_motora): Oglas_builder;
-    public function setSnagaMotora(int $snaga_motora): Oglas_builder;
-    public function setEmisiona_klasa_motora(int $emisiona_klasa_motora): Oglas_builder;
-    public function setKlima(int $klima): Oglas_builder;
-    public function setPredjenaKilometraza(float $predjena_kilometraza): Oglas_builder;
-    public function setBrojSedisa(int $broj_sedista): Oglas_builder;
-    public function setBroj_vrata(int $broj_vrata): Oglas_builder;
-    public function setBoja(int $boja): Oglas_builder;
-    public function setPoreklo_vozila(int $poreklo_vozila): Oglas_builder;
-    public function setFotografije(string $fotografije): Oglas_builder;
-    public function setVrsta_goriva(int $vrsta_goriva): Oglas_builder;
-    public function setVrsta_prenosa(int $vrsta_prenosa): Oglas_builder;
-    public function setVrsta_pogona(int $vrsta_pogona): Oglas_builder;
-    public function setDatumPostavke(string $datum_postavke): Oglas_builder;
-    public function setOpisAutomobila(string $opis_automobila): Oglas_builder;
-    public function setAktivan(bool $aktivan): Oglas_builder;
+    public function set_id(int $id): Oglas_builder;
+    public function set_vlasnik(int $id_vlasnika): Oglas_builder;
+    public function set_marka(int $marka): Oglas_builder;
+    public function set_model(string $model): Oglas_builder;
+    public function set_godina_proizvodnje(int $godina_proizvodnje): Oglas_builder;
+    public function set_cena(float $cena): Oglas_builder;
+    public function set_karoserija(int $karoserija): Oglas_builder;
+    public function set_zapremina_motora(int $zapremina_motora): Oglas_builder;
+    public function set_snaga_motora(int $snaga_motora): Oglas_builder;
+    public function set_emisiona_klasa_motora(int $emisiona_klasa_motora): Oglas_builder;
+    public function set_klima(int $klima): Oglas_builder;
+    public function set_predjena_kilometraza(float $predjena_kilometraza): Oglas_builder;
+    public function set_broj_sedista(int $broj_sedista): Oglas_builder;
+    public function set_broj_vrata(int $broj_vrata): Oglas_builder;
+    public function set_boja(int $boja): Oglas_builder;
+    public function set_poreklo_vozila(int $poreklo_vozila): Oglas_builder;
+    public function set_fotografije(string $fotografije): Oglas_builder;
+    public function set_vrsta_goriva(int $vrsta_goriva): Oglas_builder;
+    public function set_vrsta_prenosa(int $vrsta_prenosa): Oglas_builder;
+    public function set_vrsta_pogona(int $vrsta_pogona): Oglas_builder;
+    public function set_datum_postavke(string $datum_postavke): Oglas_builder;
+    public function set_opis_automobila(string $opis_automobila): Oglas_builder;
+    public function set_aktivan(bool $aktivan): Oglas_builder;
     public function build(): Oglas;
 }

@@ -1,3 +1,40 @@
+## __17. januar 2023.__ - bugfixing i best-practices
+
+### *.php:
+- Komponente koje sluze za prikaz elemenata preimenovane u *.view.php
+- Popravljene greske usled promene strukture fajlova
+
+### *.css:
+- Migriran content login.css-a u index.css
+- Migriran content register.css-a u index.css
+- index.css preimenovan u style.css
+- Premesteni svi @media query na kraj css fajla
+- Uklonjeni login.css i register.css
+
+### src/templates:
+- Popunjeni templates pojedinih stranica
+
+### public/*.php:
+- Content se sada ucitava iz src/templates
+
+### src/database/Oglas_input_builder
+- Implementiran builder pattern za pravljenje oglasa
+
+### src/database/Database_operacije.php:
+- Oglas_input_builder se koristi za ucitavanje oglasa iz baze
+
+### src/database/handlers/Input_handler.php:
+- Napravljen interfejs Input handlera
+- Chain of responsibility pattern
+
+### public/index.php:
+- Pretraga pretvorena u chain of responsibility pattern
+
+### TODO
+- Upotrebi Chain of Responsibility pattern za login i register input validaciju i sanitizaciju
+- Napravi stranicu automobila
+- Napravi admin stranicu
+
 ## __16. januar 2023.__ - dan feraktorisanja
 > ## __PROMENJENA STRUKTURA FAJLOVA I FOLDERA U [PHP-PDS/SKELETON STANDARD](https://github.com/php-pds/skeleton_research)__
 

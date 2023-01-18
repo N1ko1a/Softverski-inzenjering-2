@@ -4,13 +4,16 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 session_start();
 
+$title = "Polovnjaci - Prijavi se";
+
 if (isset($_SESSION["auth"])) {
     unset($_SESSION["auth"]);
     header('Location: index.php');
     exit;
 };
 
-include_once('Database_operacije.php');
+include( $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Database_operacije.php");
+
 if (isset($_POST["submit"]) && isset($_POST["username"]) && isset($_POST["password"])) {
 
     /* "dezinfekcija" username (prima user.name, user, user1.name2.name3 i slicno)
@@ -36,35 +39,5 @@ if (isset($_POST["submit"]) && isset($_POST["username"]) && isset($_POST["passwo
         exit;
     }
 }
-?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="login.css">
-    <title>Polovnjaci - Prijava</title>
-</head>
-
-<body>
-    <section>
-        <h1>Prijavi se</h1>
-        <form action="login.php" method="POST">
-            <input type="text" placeholder="Korisnicko ime" name="username">
-            <input type="password" placeholder="Sifra" name="password">
-            <?php
-            if (isset($_GET["reg"]))
-                echo "<div style='color: green; font-size: 16px;'>Uspesna registracija! Unesite podatke da biste se prijavili!</div>";
-            if (isset($_POST["submit"]))
-                echo "<div style='color: red; font-size: 16px;'>Nepravilan unos korisckog imena ili lozinke!</div>";
-            ?>
-            <a href="register.php">Nemas nalog? Registruj se <span>ovde</span>!</a>
-            <input type="submit" value="Prijavi se" name="submit">
-        </form>
-    </section>
-</body>
-
-</html>
+include($_SERVER["DOCUMENT_ROOT"] . "/../src/templates/login.view.php");

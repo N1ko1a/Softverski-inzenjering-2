@@ -4,7 +4,9 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 session_start();
 
-include( $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Database_operacije.php");
+$title = "Polovnjaci";
+
+require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Database_operacije.php";
 
 $marke = Database_operacije::get_instance()->get_specifikacija_list(new Marka());
 $list = Database_operacije::get_instance()->get_specifikacija_list(new Karoserija());
@@ -20,8 +22,10 @@ $porekla_vozila = Database_operacije::get_instance()->get_specifikacija_list(new
 $vrste_pogona = Database_operacije::get_instance()->get_specifikacija_list(new Vrsta_pogona());
 $vozila = Database_operacije::get_instance()->get_oglas_list();
 
-include($_SERVER["DOCUMENT_ROOT"] . "/../src/components/head.php");
-include($_SERVER["DOCUMENT_ROOT"] . "/../src/components/navbar.php");
-include($_SERVER["DOCUMENT_ROOT"] . "/../src/components/pretraga.php");
-include($_SERVER["DOCUMENT_ROOT"] . "/../src/components/prikaz_vozila.php");
-include($_SERVER["DOCUMENT_ROOT"] . "/../src/components/footer.php");
+require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/search/Search.php";
+
+$search = new Search();
+
+$vozila = $search->filter_results($vozila, $_GET);
+
+include($_SERVER["DOCUMENT_ROOT"] . "/../src/templates/index.view.php");
