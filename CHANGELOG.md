@@ -1,3 +1,48 @@
+## __24. januar 2023.__ - Uklanjanje i dodavanje oglasa
+
+### src/handlers/oglas/:
+- Prebaceni sve klase handlera koji rade sa oglasima u handlers/oglas
+
+### src/handlers/input/:
+- Prebacene klase koje rade sa inputom korisnika
+- Napravljene klase za input validaciju
+
+### src/modules/:
+- Search.php prebacen u folder modules
+- Login.php dodat u folder modules
+- Register.php dodat u folder modules
+
+### src/Login.php:
+- Klasa sluzi za validaciju i proveru incijala kod logina
+
+### src/Register.php:
+- Klasa sluzi za validaciju inputa i registraciju korisnika
+
+### src/components/dropdown/:
+- Folder sadrzi sve drop-down menije za selekciju
+
+### src/components/pretraga.view.php:
+- Drop down meni prebaceni u src/components/dropdown/
+
+### public/style/automobil.css:
+- Uklonjen
+
+### public/novioglas.php:
+- Preimenovano iz automobili.php u novioglas.php
+- Loaduje se iz src/templates/novioglas.view.php
+- Sada moze da se doda oglas
+
+### src/modules/Dodaj_oglas.php:
+- Proverava inpute, pravi oglas i resize-uje sliku na 800x600 i cuva je kao webp u odredjeni folder
+
+### public/oglas.php:
+- Prikazuje oglas sa odredjenim id-om
+- Ispod oglasa se nalazi "UKLONI OGLAS" - vidi se samo administratoru i vlasniku oglasa
+
+### public/uklonioglas.php:
+- Proverava da li je korisnik administrator ili vlasnik oglasa
+- Stavlja oglas aktivan=0 pa redirectuje na index
+
 ## __17. januar 2023.__ - bugfixing i best-practices
 
 ### *.php:

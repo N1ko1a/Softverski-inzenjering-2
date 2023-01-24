@@ -10,11 +10,11 @@
         $dir = scandir($imgPath);
         $img = $imgPath . $dir[2];
     ?>
-        <div class="oglas">
+        <a href="oglas.php?id=<?php echo $oglas->get_id() ?>" class="oglas">
             <img src="<?php echo $img ?>" alt="nema">
             <p><?php echo $oglas->getModel(); ?></p>
             <p><?php echo $oglas->getCena(); ?>e</p>
-        </div>
+        </a>
     <?php
     }
     ?>
