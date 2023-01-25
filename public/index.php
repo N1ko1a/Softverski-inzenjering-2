@@ -22,7 +22,7 @@ $porekla_vozila = Database_operacije::get_instance()->get_specifikacija_list(new
 $vrste_pogona = Database_operacije::get_instance()->get_specifikacija_list(new Vrsta_pogona());
 $vozila = Database_operacije::get_instance()->get_oglas_list();
 
-require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/search/Search.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/modules/Search.php";
 
 $search = new Search();
 

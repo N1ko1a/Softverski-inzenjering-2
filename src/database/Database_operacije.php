@@ -68,6 +68,15 @@ class Database_operacije
         $conn->query($sql);
     }
 
+    public function ukloni_oglas(int $id) {
+
+        $sql = "UPDATE oglas SET aktivan=0 WHERE id_oglasa=$id";
+        $conn = $this->connect();
+
+        $conn->query($sql);
+
+    }
+
 
     /**
      * Vraca niz svih specifikacija
@@ -175,20 +184,18 @@ class Database_operacije
 
     /**
      * Vraca niz popunjen svim objektima Oglas iz baze
-     * @return array
+     * @return ?Oglas
      */
-    public function get_oglas_list(): array
+    public function get_oglas_po_id(int $id): ?Oglas
     {
-        $sql = "SELECT * FROM oglas ORDER BY datum_postavke DESC";
+        $sql = "SELECT * FROM oglas WHERE id_oglasa=$id ORDER BY datum_postavke DESC";
         $conn = $this->connect();
-
-        $arr = array();
 
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             $oglas_input_builder = new Oglas_input_builder();
-            while ($i = $result->fetch_assoc()) {
-                $oglas = $oglas_input_builder->set_id($i["id_oglasa"])
+            $i = $result->fetch_assoc();
+            $oglas = $oglas_input_builder->set_id($i["id_oglasa"])
                 ->set_vlasnik($i["vlasnik"])
                 ->set_marka($i["marka"])
                 ->set_model($i["model"])
@@ -213,6 +220,56 @@ class Database_operacije
                 ->set_aktivan($i["aktivan"])
                 ->build();
 
+            $conn->close();
+
+            return $oglas;
+        }
+
+        $conn->close();
+
+        return null;
+    }
+
+    /**
+     * Vraca niz popunjen svim objektima Oglas iz baze
+     * @return array
+     */
+    public function get_oglas_list(): array
+    {
+        $sql = "SELECT * FROM oglas ORDER BY datum_postavke DESC";
+        $conn = $this->connect();
+
+        $arr = array();
+
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            $oglas_input_builder = new Oglas_input_builder();
+            while ($i = $result->fetch_assoc()) {
+                $oglas = $oglas_input_builder->set_id($i["id_oglasa"])
+                    ->set_vlasnik($i["vlasnik"])
+                    ->set_marka($i["marka"])
+                    ->set_model($i["model"])
+                    ->set_godina_proizvodnje($i["godina_proizvodnje"])
+                    ->set_cena($i["cena"])
+                    ->set_karoserija($i["karoserija"])
+                    ->set_zapremina_motora($i["zapremina_motora(ccm)"])
+                    ->set_snaga_motora($i["snaga_motora(kw)"])
+                    ->set_emisiona_klasa_motora($i["emisiona_klasa_motora"])
+                    ->set_klima($i["klima"])
+                    ->set_predjena_kilometraza($i["predjena_kilometraza"])
+                    ->set_broj_sedista($i["broj_sedista"])
+                    ->set_broj_vrata($i["broj_vrata"])
+                    ->set_boja($i["boja"])
+                    ->set_poreklo_vozila($i["poreklo_vozila"])
+                    ->set_fotografije($i["fotografije"])
+                    ->set_vrsta_goriva($i["vrsta_goriva"])
+                    ->set_vrsta_prenosa($i["vrsta_prenosa"])
+                    ->set_vrsta_pogona($i["vrsta_pogona"])
+                    ->set_datum_postavke($i["datum_postavke"])
+                    ->set_opis_automobila($i["opis_automobila"])
+                    ->set_aktivan($i["aktivan"])
+                    ->build();
+
                 array_push($arr, $oglas);
             }
         }
@@ -220,6 +277,51 @@ class Database_operacije
         $conn->close();
 
         return $arr;
+    }
+
+
+    /**
+     * Dodaje oglas od parametara, vraca id kreiranog oglasa.
+     * @param int $vlasnik
+     * @param int $marka
+     * @param string $model
+     * @param int $godina_proizvodnje
+     * @param float $cena
+     * @param int $karoserija
+     * @param int $zapremina_motora
+     * @param int $snaga_motora
+     * @param int $emisiona_klasa_motora
+     * @param int $klima
+     * @param float $kilometraza
+     * @param int $broj_sedista
+     * @param int $broj_vrata
+     * @param int $boja
+     * @param int $poreklo_vozila
+     * @param int $vrsta_goriva
+     * @param int $vrsta_prenosa
+     * @param int $vrsta_pogona
+     * @param string $opis
+     * @return int
+     */
+    public function dodaj_oglas(int $vlasnik, int $marka, string $model, int $godina_proizvodnje, float $cena, int $karoserija, int $zapremina_motora, int $snaga_motora, int $emisiona_klasa_motora, int $klima, float $kilometraza, int $broj_sedista, int $broj_vrata, int $boja, int $poreklo_vozila, int $vrsta_goriva, int $vrsta_prenosa, int $vrsta_pogona, string $opis): int
+    {
+
+        $sql = "INSERT INTO oglas (vlasnik, marka, model, godina_proizvodnje, cena, karoserija, `zapremina_motora(ccm)`, `snaga_motora(kw)`, emisiona_klasa_motora, klima, predjena_kilometraza, broj_sedista, broj_vrata, boja, poreklo_vozila, fotografije, vrsta_goriva, vrsta_prenosa, vrsta_pogona, datum_postavke, opis_automobila, aktivan) VALUES 
+        ($vlasnik, $marka, '$model', $godina_proizvodnje, $cena, $karoserija, $zapremina_motora, $snaga_motora, $emisiona_klasa_motora, $klima, $kilometraza, $broj_sedista, $broj_vrata, $boja, $poreklo_vozila, '', $vrsta_goriva, $vrsta_prenosa, $vrsta_pogona, NOW(), '$opis', 1)";
+
+        $conn = $this->connect();
+
+        $conn->query($sql);
+
+        $id_oglasa = $conn->insert_id;
+
+        $sql = "UPDATE oglas SET fotografije='$id_oglasa' WHERE id_oglasa=$id_oglasa";
+
+        $conn->query($sql);
+
+        $conn->close();
+
+        return $id_oglasa;
     }
 
     /**
@@ -276,7 +378,8 @@ class Database_operacije
      * @param string $email
      * @return void
      */
-    public function napravi_nalog(string $ime, string $prezime, string $username, string $sifra, string $telefon, string $email) {
+    public function napravi_nalog(string $ime, string $prezime, string $username, string $sifra, string $telefon, string $email)
+    {
 
         $enc = password_hash($sifra, PASSWORD_BCRYPT, ["cost" => BCRYPTCOST]);
 

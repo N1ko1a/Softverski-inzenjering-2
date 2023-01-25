@@ -25,7 +25,7 @@
                 } else {
                 ?>
                 <li>
-                    <a href="automobili.php">POSTAVI OGLAS</a>
+                    <a href="novioglas.php">POSTAVI OGLAS</a>
                 </li>
                 <?php } ?>
             </ul>

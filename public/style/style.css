@@ -26,6 +26,14 @@ html {
   min-height: -webkit-fill-available;
 }
 
+.flex {
+  display: flex;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
 body {
   background-color: #f3f3f3;
 }
@@ -235,14 +243,13 @@ header nav ul li a:hover {
 }
 
 .glavna-slika img {
-  display: inline-block;
+  box-sizing: border-box;
   align-items: center;
   justify-content: center;
   text-align: center;
   margin: 0 auto;
-  height: 200px;
-  width: 300px;
-  margin-left: 10px;
+  max-width: 300px;
+  height: auto;
   border-radius: 10px;
 }
 
@@ -253,6 +260,7 @@ header nav ul li a:hover {
   width: auto;
   height: auto;
 }
+
 .ostale-slike img {
   display: inline-block;
   margin: 0 auto;
@@ -262,7 +270,6 @@ header nav ul li a:hover {
   margin-top: 10px;
   height: 50px;
   width: 70px;
-  padding: 2px;
   border-radius: 10px;
 }
 
@@ -270,33 +277,21 @@ header nav ul li a:hover {
   display: block;
   justify-content: center;
   align-items: center;
-  margin: 9 auto;
   font-family: Arial;
   font-size: 16px;
 }
 .cena {
   display: block;
   text-align: center;
-  margin: 0 auto;
-  margin: 10px;
   padding: 5px;
+  margin: 10px 0;
   border-radius: 10px;
   background-color: #dedada;
 }
 .informacije {
   display: block;
   text-align: center;
-  margin: 0 auto;
-  margin: 10px;
-  padding: 5px;
-  border-radius: 10px;
-  background-color: #dedada;
-}
-.dodatne-info {
-  display: block;
-  text-align: center;
-  margin: 0 auto;
-  margin: 10px;
+  margin: 10px 0;
   padding: 5px;
   border-radius: 10px;
   background-color: #dedada;
@@ -399,6 +394,44 @@ a span {
   color: rgba(255, 255, 255, 0.6);
 }
 
+.slike-selector {
+  width: 100%;
+  min-height: 40px;
+  background-color: #f3f3f3;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in;
+  font-family: Arial, sans-serif;
+}
+
+.slike-selector:hover {
+  background-color: black;
+  border-color: white;
+  color: white;
+  cursor: pointer;
+  scale: 1.02;
+}
+
+.slike-selector input {
+  display: none;
+}
+
+.grid-span-3 {
+  grid-column: span 3;
+}
+
+.error {
+  color: red;
+  text-align: center;
+}
+
+a {
+  color: black;
+}
+
 @media only screen and (min-width: 768px) {
   .naj1-oglasi {
     grid-template-columns: 1fr 1fr;
@@ -476,8 +509,7 @@ a span {
 
 @media only screen and (min-width: 768px) {
   .glavna-slika img {
-    height: 300px;
-    width: 400px;
+    max-width: 400px;
   }
   .ostale-slike img {
     height: 70px;
