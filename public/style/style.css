@@ -14,8 +14,12 @@ html {
 .bg-1 {
   margin: 0;
   padding: 0;
-  background: rgb(40,40,40);
-  background: linear-gradient(158deg, rgba(40,40,40,1) 0%, rgba(30,30,30,1) 100%);
+  background: rgb(40, 40, 40);
+  background: linear-gradient(
+    158deg,
+    rgba(40, 40, 40, 1) 0%,
+    rgba(30, 30, 30, 1) 100%
+  );
 
   color: #fff;
   font-family: Arial;
@@ -30,6 +34,10 @@ html {
   display: flex;
 }
 
+.flex-col {
+  flex-direction: column;
+}
+
 .justify-content-center {
   justify-content: center;
 }
@@ -42,7 +50,7 @@ body {
 
 header {
   background-color: black;
-  width: 100vw;
+  /* width: 100vw; ??? overflowuje na chromiumu ??? */
   min-height: 100px;
   padding: 10px 0;
 }
@@ -133,6 +141,11 @@ header nav ul li a:hover {
   border-color: black;
 }
 
+.pretrazi {
+  position: relative;
+  grid-column: span 3;
+}
+
 .pretraga button {
   text-decoration: none;
   color: white;
@@ -142,10 +155,10 @@ header nav ul li a:hover {
 
   display: block;
   margin: 0 auto;
-  grid-column: span 3;
   margin-bottom: 10px;
   margin-top: 10px;
-  width: 200px;
+  padding: 5px 20px;
+  max-width: 200px;
   height: 40px;
   border-radius: 10px;
   background-color: orange;
@@ -223,7 +236,6 @@ header nav ul li a:hover {
   width: auto;
   height: auto;
 }
-
 
 .ime-oglasa h2 {
   display: block;
@@ -347,7 +359,6 @@ a span {
   margin: 10px 0;
 }
 
-
 .login input[type="submit"] {
   text-decoration: none;
   color: white;
@@ -380,7 +391,6 @@ a span {
   outline: none;
   border: 1px solid rgba(255, 255, 255, 0.9);
 }
-
 
 .login input[type="button"]:focus {
   outline: none;
@@ -432,63 +442,170 @@ a {
   color: black;
 }
 
-@media only screen and (min-width: 768px) {
-  .naj1-oglasi {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .naj2-oglasi {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .oglas, .oglas img {
-    width: 300px;
-  }
-
+.korisnici {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  width: fit-content;
+  padding: 0 10px;
+  margin: 30px auto 60px auto;
+  gap: 10px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-@media only screen and (min-width: 1000px) {
-  .naj1-oglasi {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-
-  .naj2-oglasi {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
-@media only screen and (min-width: 1500px) {
-  .naj1-oglasi {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-
-  .naj2-oglasi {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
+.korisnici .naslovi,
+.korisnici .inline-naslov {
+  font-weight: bold;
+  font-size: 18px;
 }
 
+.korisnici .naslovi {
+  display: none;
+}
 
-@media only screen and (min-width: 1000px) {
-  .pretraga {
-    display: grid;
-    justify-content: center;
-    align-content: center;
-    grid-template-columns: 1fr 1fr 1fr;
-    padding: 1em;
-    margin: 0 auto;
-    margin-top: 10px;
+.korisnici li {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  border-bottom: 1px solid black;
+  align-items: center;
+  min-height: 40px;
+  font-size: 16px;
+  gap: 5px;
+}
 
-    max-width: 1000px;
-    min-height: 400px;
-  }
+.korisnici .email {
+  word-break: break-all;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.profil {
+  margin: 10px auto;
+  width: fit-content;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.profil .naslov {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.profil form {
+  display: flex;
+  align-items: top;
+  gap: 10px;
+}
+
+.gap-3 {
+  gap: 3px;
+}
+
+.profil input {
+  border: 1px solid black;
+  padding: 2px 5px;
+  min-height: 20px;
+}
+
+.profil button {
+  border: 0;
+  padding: 0;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+#ucitaj-pretragu, #sacuvaj-pretragu {
+  position: absolute;
+  background-color: transparent;
+  width: auto;
+  height: auto;
+  border: 0;
+  bottom: 0;
+}
+
+#ucitaj-pretragu svg, #sacuvaj-pretragu svg {
+  width: 30px;
+  height: 30px;
+}
+
+#ucitaj-pretragu {
+  left: 0;
+}
+
+#sacuvaj-pretragu {
+  right: 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#modal {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  justify-content: stretch;
+  align-items: center;
+  text-align: center;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.mx-auto {
+  margin: 0 auto;
+}
+
+
+#modal .container {
+  margin: 0 auto;
+  max-width: 300px;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  background-color: #dedada;
+  gap: 20px;
+}
+
+#modal a {
+  padding: 5px 20px;
+  background-color: white;
+  font-size: 18px;
 }
 
 @media only screen and (min-width: 450px) {
   header nav ul {
     flex-direction: row;
   }
+  .profil {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media only screen and (min-width: 768px) {
+  .naj1-oglasi {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .naj2-oglasi {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .oglas,
+  .oglas img {
+    width: 300px;
+  }
+
   header img {
     display: flex;
     float: left;
@@ -505,9 +622,7 @@ a {
     list-style: none;
     margin-top: 43px;
   }
-}
 
-@media only screen and (min-width: 768px) {
   .glavna-slika img {
     max-width: 400px;
   }
@@ -529,5 +644,77 @@ a {
     margin: 0 auto;
     width: 700px;
     height: auto;
+  }
+
+  .korisnici li {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+@media only screen and (min-width: 1000px) {
+  .naj1-oglasi {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .naj2-oglasi {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .pretraga {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 1em;
+    margin: 0 auto;
+    margin-top: 10px;
+
+    max-width: 1000px;
+    min-height: 400px;
+  }
+    .glavna-slika img {
+    max-width: 400px;
+  }
+  .ostale-slike img {
+    height: 70px;
+    width: 90px;
+  }
+  .opisi {
+    font-family: Arial;
+    font-size: 17px;
+  }
+
+  .opisi {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: 1fr;
+    padding: 1em;
+    margin: 0 auto;
+    width: 700px;
+    height: auto;
+  }
+
+  .korisnici li {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .korisnici .naslovi {
+    display: grid;
+  }
+
+  .korisnici .inline-naslov {
+    display: none;
+  }
+
+}
+
+@media only screen and (min-width: 1500px) {
+  .naj1-oglasi {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .naj2-oglasi {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }

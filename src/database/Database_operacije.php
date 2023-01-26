@@ -3,6 +3,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . '/../config/dbconfig.php';
 require_once $_SERVER["DOCUMENT_ROOT"] . '/../config/config.php';
 require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Oglas.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Oglas_input_builder.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Sacuvana_pretraga.php";
 
 class Database_operacije
 {
@@ -51,6 +52,21 @@ class Database_operacije
         $conn = $this->connect();
 
         $conn->query($sql);
+
+        $conn->close();
+
+    }
+
+    public function ukloni_pretragu(int $id) {
+
+        $sql = "DELETE FROM pretrage WHERE id_pretrage=$id";
+
+        $conn = $this->connect();
+
+        $conn->query($sql);
+
+        $conn->close();
+
     }
 
     /**
@@ -66,6 +82,9 @@ class Database_operacije
         $conn = $this->connect();
 
         $conn->query($sql);
+
+        $conn->close();
+
     }
 
     public function ukloni_oglas(int $id) {
@@ -74,6 +93,8 @@ class Database_operacije
         $conn = $this->connect();
 
         $conn->query($sql);
+        
+        $conn->close();
 
     }
 
@@ -143,6 +164,46 @@ class Database_operacije
     }
 
     /**
+     * Na osnovu id-a vraca objekat sacuvane pretrage korisnika dobijen iz baze
+     * @param int $id
+     * @return ?Sacuvana_pretraga
+     */
+    public function get_pretraga(int $id): ?Sacuvana_pretraga
+    {
+        $sql = "SELECT * FROM pretrage WHERE id_pretrage=$id";
+        $conn = $this->connect();
+
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            $i = $result->fetch_assoc();
+            $pretraga = new Sacuvana_pretraga(
+                $i["id_pretrage"],
+                $i["id_korisnika"],
+                $i["id_marke"],
+                $i["model"],
+                $i["cenaod"],
+                $i["cenado"],
+                $i["id_karoserije"],
+                $i["godisteod"],
+                $i["godistedo"],
+                $i["kilometrazado"],
+                $i["id_goriva"],
+                $i["id_boje"],
+                $i["id_prenosa"],
+                $i["id_vrata"],
+                $i["id_sedista"],
+                $i["id_klase"],
+                $i["id_klime"],
+                $i["id_porekla"],
+                $i["id_pogona"]
+            ); 
+            return $pretraga;
+        }
+
+        return null;
+    }
+
+    /**
      * Na osnovu username-a vraca objekat klase korisnika dobijen iz baze
      * vraca korisnika sa id -1 ako nije pronadjen
      * @param string $username
@@ -170,7 +231,7 @@ class Database_operacije
      */
     public function get_korisnik_po_mail(string $mail): Korisnik
     {
-        $sql = "SELECT * FROM korisnik WHERE email='$mail'";
+        $sql = "SELECT * FROM korisnik WHERE email=\"$mail\"";
         $conn = $this->connect();
 
         $result = $conn->query($sql);
@@ -180,6 +241,60 @@ class Database_operacije
         }
 
         return new Korisnik();
+    }
+
+    /**
+     * Menja role korisnika sa odredjenim ID-om
+     * @param int $id
+     * @return void
+     */
+    public function izmeni_role(int $id): void
+    {
+
+        // 1 XOR 1 = 0, 0 XOR 1 = 1
+        $sql = "UPDATE korisnik SET rola=rola XOR 1 WHERE id_korisnika=$id";
+        $conn = $this->connect();
+
+        $conn->query($sql);
+
+        $conn->close();
+
+    }
+
+    /**
+     * Menja role korisnika sa odredjenim ID-om
+     * @param int $id
+     * @return void
+     */
+    public function izmeni_verifikovan(int $id): void
+    {
+
+        // 1 XOR 1 = 0, 0 XOR 1 = 1
+        $sql = "UPDATE korisnik SET verifikovan=verifikovan XOR 1 WHERE id_korisnika=$id";
+        $conn = $this->connect();
+
+        $conn->query($sql);
+
+        $conn->close();
+
+    }
+
+    /**
+     * Menja odobrenje oglasa sa odredjenim ID-om
+     * @param int $id
+     * @return void
+     */
+    public function izmeni_odobrenje(int $id): void
+    {
+
+        // 1 XOR 1 = 0, 0 XOR 1 = 1
+        $sql = "UPDATE oglas SET odobren=odobren XOR 1 WHERE id_oglasa=$id";
+        $conn = $this->connect();
+
+        $conn->query($sql);
+
+        $conn->close();
+
     }
 
     /**
@@ -218,6 +333,7 @@ class Database_operacije
                 ->set_datum_postavke($i["datum_postavke"])
                 ->set_opis_automobila($i["opis_automobila"])
                 ->set_aktivan($i["aktivan"])
+                ->set_odobren($i["odobren"])
                 ->build();
 
             $conn->close();
@@ -229,6 +345,43 @@ class Database_operacije
 
         return null;
     }
+
+    /**
+     * Vraca niz popunjen svim objektima Oglas iz baze
+     * @return array
+     */
+    public function get_korisnik_list(): array
+    {
+        $sql = "SELECT * FROM korisnik";
+        $conn = $this->connect();
+
+        $arr = array();
+
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($i = $result->fetch_assoc()) {
+                $korisnik = new Korisnik(
+                    $i["id_korisnika"],
+                    $i["ime"],
+                    $i["prezime"],
+                    $i["username"],
+                    $i["sifra"],
+                    $i["rola"],
+                    $i["telefon"],
+                    $i["email"],
+                    $i["verifikovan"]
+                );
+
+                array_push($arr, $korisnik);
+            }
+        }
+
+        $conn->close();
+
+        return $arr;
+    }
+
+
 
     /**
      * Vraca niz popunjen svim objektima Oglas iz baze
@@ -268,6 +421,7 @@ class Database_operacije
                     ->set_datum_postavke($i["datum_postavke"])
                     ->set_opis_automobila($i["opis_automobila"])
                     ->set_aktivan($i["aktivan"])
+                    ->set_odobren($i["odobren"])
                     ->build();
 
                 array_push($arr, $oglas);
@@ -325,6 +479,54 @@ class Database_operacije
     }
 
     /**
+     * Vraca niz popunjen objektima Sacuvana_pretraga iz baze
+     * ciji je korisnik $id
+     * @return array
+     */
+    public function get_pretraga_list(int $id): array
+    {
+        $sql = "SELECT * FROM pretrage WHERE id_korisnika=$id";
+        $conn = $this->connect();
+
+        $arr = array();
+
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($i = $result->fetch_assoc()) {
+
+                $pretraga = new Sacuvana_pretraga(
+                    $i["id_pretrage"],
+                    $i["id_korisnika"],
+                    $i["id_marke"],
+                    $i["model"],
+                    $i["cenaod"],
+                    $i["cenado"],
+                    $i["id_karoserije"],
+                    $i["godisteod"],
+                    $i["godistedo"],
+                    $i["kilometrazado"],
+                    $i["id_goriva"],
+                    $i["id_boje"],
+                    $i["id_prenosa"],
+                    $i["id_vrata"],
+                    $i["id_sedista"],
+                    $i["id_klase"],
+                    $i["id_klime"],
+                    $i["id_porekla"],
+                    $i["id_pogona"]
+                ); 
+
+                array_push($arr, $pretraga);
+            }
+        }
+
+        $conn->close();
+
+        return $arr;
+    }
+
+
+    /**
      * Menja lozinku korisnika sa odredjenim id-om
      * @param int $id
      * @param string $pwd
@@ -335,6 +537,106 @@ class Database_operacije
         $enc = password_hash($pwd, PASSWORD_BCRYPT, ["cost" => BCRYPTCOST]);
 
         $sql = "UPDATE korisnik SET sifra='$enc' WHERE id_korisnika=$id";
+
+        $conn = $this->connect();
+
+        $conn->query($sql);
+
+        $conn->close();
+
+        return true;
+    }
+
+    /**
+     * Menja ime korisnika sa odredjenim id-om
+     * @param int $id
+     * @param string $ime
+     * @return bool
+     */
+    public function izmeni_ime(int $id, string $ime): bool
+    {
+
+        $sql = "UPDATE korisnik SET ime='$ime' WHERE id_korisnika=$id";
+
+        $conn = $this->connect();
+
+        $conn->query($sql);
+
+        $conn->close();
+
+        return true;
+    }
+
+    /**
+     * Menja prezime korisnika sa odredjenim id-om
+     * @param int $id
+     * @param string $prezime
+     * @return bool
+     */
+    public function izmeni_prezime(int $id, string $prezime): bool
+    {
+
+        $sql = "UPDATE korisnik SET prezime='$prezime' WHERE id_korisnika=$id";
+
+        $conn = $this->connect();
+
+        $conn->query($sql);
+
+        $conn->close();
+
+        return true;
+    }
+
+    /**
+     * Menja username korisnika sa odredjenim id-om
+     * @param int $id
+     * @param string $username
+     * @return bool
+     */
+    public function izmeni_username(int $id, string $username): bool
+    {
+
+        $sql = "UPDATE korisnik SET username='$username' WHERE id_korisnika=$id";
+
+        $conn = $this->connect();
+
+        $conn->query($sql);
+
+        $conn->close();
+
+        return true;
+    }
+
+    /**
+     * Menja telefon korisnika sa odredjenim id-om
+     * @param int $id
+     * @param string $telefon
+     * @return bool
+     */
+    public function izmeni_telefon(int $id, string $telefon): bool
+    {
+
+        $sql = "UPDATE korisnik SET telefon='$telefon' WHERE id_korisnika=$id";
+
+        $conn = $this->connect();
+
+        $conn->query($sql);
+
+        $conn->close();
+
+        return true;
+    }
+
+    /**
+     * Menja telefon korisnika sa odredjenim id-om
+     * @param int $id
+     * @param string $email
+     * @return bool
+     */
+    public function izmeni_email(int $id, string $email): bool
+    {
+
+        $sql = "UPDATE korisnik SET email=\"$email\" WHERE id_korisnika=$id";
 
         $conn = $this->connect();
 
@@ -383,12 +685,24 @@ class Database_operacije
 
         $enc = password_hash($sifra, PASSWORD_BCRYPT, ["cost" => BCRYPTCOST]);
 
-        $sql = "INSERT INTO korisnik (ime, prezime, username, sifra, rola, telefon, email, verifikovan) VALUES ('$ime', '$prezime', '$username', '$enc', 0, '$telefon', '$email', 0)";
+        $sql = "INSERT INTO korisnik (ime, prezime, username, sifra, rola, telefon, email, verifikovan) VALUES ('$ime', '$prezime', '$username', '$enc', 0, '$telefon', \"$email\", 0)";
 
         $conn = $this->connect();
 
         $conn->query($sql);
 
         $conn->close();
+    }
+
+    public function dodaj_sacuvanu_pretragu(int $id_korisnika, ?int $id_marke, ?string $model, ?int $cenaod, ?int $cenado, ?int $id_karoserije, ?int $godisteod, ?int $godistedo, ?int $kilometrazado, ?int $id_goriva, ?int $id_boje, ?int $id_prenosa, ?int $id_vrata, ?int $id_sedista, ?int $id_klase, ?int $id_klime, ?int $id_porekla, ?int $id_pogona) {
+
+        $sql = "INSERT INTO pretrage (`id_korisnika`, `id_marke`, `model`, `cenaod`, `cenado`, `id_karoserije`, `godisteod`, `godistedo`, `kilometrazado`, `id_goriva`, `id_boje`, `id_prenosa`, `id_vrata`, `id_sedista`, `id_klase`, `id_klime`, `id_porekla`, `id_pogona`) VALUES ($id_korisnika,$id_marke,'$model',$cenaod,$cenado,$id_karoserije,$godisteod,$godistedo,$kilometrazado,$id_goriva,$id_boje,$id_prenosa,$id_vrata,$id_sedista,$id_klase,$id_klime,$id_porekla,$id_pogona)";
+
+        $conn = $this->connect();
+
+        $conn->query($sql);
+
+        $conn->close();
+
     }
 }

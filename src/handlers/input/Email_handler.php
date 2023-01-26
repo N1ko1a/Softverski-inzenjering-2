@@ -27,7 +27,7 @@ class Email_handler implements Input_handler
 	public function process(array $input): bool
 	{
 
-		if (preg_match('/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/', $input["email"]) == 0)
+		if (preg_match("/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/", $input["email"]) == 0)
         	return false;
 
 		if (is_null($this->next_handler))

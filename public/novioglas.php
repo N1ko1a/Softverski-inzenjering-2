@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 session_start();
 
 if (!isset($_SESSION["auth"])) {
@@ -28,11 +31,13 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/modules/Search.php";
 
 $search = new Search();
 
-$vozila = $search->filter_results($vozila, array("vlasnik" => $_SESSION["auth"]));
+$vozila = $search->filter_vlasnik($vozila, $_SESSION["auth"]);
 
 $uspesno_dodavanje = true;
 
-if (isset($_POST["submit"])) {
+$verifikovan = Database_operacije::get_instance()->get_korisnik($_SESSION["auth"])->get_verifikovan();
+
+if (isset($_POST["submit"]) && $verifikovan) {
     require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/modules/Dodaj_oglas.php";
     $dodaj_oglas = new Dodaj_oglas();
     $uspesno_dodavanje = $dodaj_oglas->dodaj_oglas($_SESSION["auth"], $_POST);

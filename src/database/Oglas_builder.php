@@ -27,5 +27,6 @@ interface Oglas_builder {
     public function set_datum_postavke(string $datum_postavke): Oglas_builder;
     public function set_opis_automobila(string $opis_automobila): Oglas_builder;
     public function set_aktivan(bool $aktivan): Oglas_builder;
+    public function set_odobren(bool $odobren): Oglas_builder;
     public function build(): Oglas;
 }

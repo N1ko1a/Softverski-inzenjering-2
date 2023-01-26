@@ -1,13 +1,11 @@
 <?php
 require_once $_SERVER["DOCUMENT_ROOT"] . '/../src/handlers/input/Input_handler.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . '/../src/database/Database_operacije.php';
 
 /**
- * Proverava password najmanje 8 karaktera, 
- * najmanje 1 veliko slovo, najmanje 
- * 1 malo slovo, najmanje 1 broj i 
- * najmanje 1 specijalni karakter
+ * Proverava da li postoji nalog sa datim username
  */
-class Password_handler implements Input_handler
+class Postojeci_username_handler implements Input_handler
 {
 
 	private ?Input_handler $next_handler = null;
@@ -30,13 +28,18 @@ class Password_handler implements Input_handler
 	public function process(array $input): bool
 	{
 
-		if (preg_match('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/', $input["password"]) == 0)
-        	return false;
+        $korisnik = Database_operacije::get_instance()->get_korisnik_po_username($input["username"]);
+
+        if ($korisnik->get_id() != -1)
+            $GLOBALS["postoji_korisnik_username"] = true;
+
+		if ($GLOBALS["postoji_korisnik_username"])
+			return false;
 
 		if (is_null($this->next_handler))
 			return true;
 
 		return $this->next_handler->process($input);
-		
+
 	}
 }
