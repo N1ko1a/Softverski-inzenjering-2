@@ -38,6 +38,7 @@ class Oglas {
 	private DateTime $datum_postavke;
 	private string $opis_automobila;
 	private bool $aktivan;
+	private bool $odobren;
 
 
 	/**
@@ -64,8 +65,9 @@ class Oglas {
 	 * @param DateTime $datum_postavke
 	 * @param string $opis_automobila
 	 * @param bool $aktivan
+	 * @param bool $odobren
 	 */
-	public function __construct(int $id_oglasa, Korisnik $vlasnik, Marka $marka, string $model, int $godina_proizvodnje, float $cena, Karoserija $karoserija, int $zapremina_motora, int $snaga_motora, Emisiona_klasa_motora $emisiona_klasa_motora, Klima $klima, float $predjena_kilometraza, Broj_sedista $broj_sedista, Broj_vrata $broj_vrata, Boja_vozila $boja, Poreklo_vozila $poreklo_vozila, string $fotografije, Vrsta_goriva $vrsta_goriva, Vrsta_prenosa $vrsta_prenosa, Vrsta_pogona $vrsta_pogona, DateTime $datum_postavke, string $opis_automobila, bool $aktivan) {
+	public function __construct(int $id_oglasa, Korisnik $vlasnik, Marka $marka, string $model, int $godina_proizvodnje, float $cena, Karoserija $karoserija, int $zapremina_motora, int $snaga_motora, Emisiona_klasa_motora $emisiona_klasa_motora, Klima $klima, float $predjena_kilometraza, Broj_sedista $broj_sedista, Broj_vrata $broj_vrata, Boja_vozila $boja, Poreklo_vozila $poreklo_vozila, string $fotografije, Vrsta_goriva $vrsta_goriva, Vrsta_prenosa $vrsta_prenosa, Vrsta_pogona $vrsta_pogona, DateTime $datum_postavke, string $opis_automobila, bool $aktivan, bool $odobren) {
 		$this->id_oglasa = $id_oglasa;
 		$this->vlasnik = $vlasnik;
 		$this->marka = $marka;
@@ -89,6 +91,7 @@ class Oglas {
 		$this->datum_postavke = $datum_postavke;
 		$this->opis_automobila = $opis_automobila;
 		$this->aktivan = $aktivan;
+		$this->odobren = $odobren;
 	}
 
 	/**
@@ -250,5 +253,12 @@ class Oglas {
 	 */
 	public function getAktivan(): bool {
 		return $this->aktivan;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function getOdobren(): bool {
+		return $this->odobren;
 	}
 }

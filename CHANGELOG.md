@@ -1,3 +1,30 @@
+## __26. januar 2023.__ - Admin stranica
+
+### public/admin.php:
+- Prikaz admin stranice
+
+### src/templates/admin.view.php:
+- Prikazuje sve korisnike i oglase
+
+### public/style/style.css
+- Uklonjen header width: 100vw, overflowuje na chromiumu iz nekog razloga
+- Dodat css za listu korisnika na admin stranici
+- Ponovljeni media query-i spojeni u 1
+
+### prikaz vozila:
+- Na pocetnoj se vise ne prikazuju vozila koja nisu odobrena od strane administratora
+- Sada administrator na stranici automobila ima opciju da odobri oglas (ili da povuce odobrenje)
+
+### baza:
+- Dodata kolona odobren(boolean) na oglasima
+- Dodata tabela pretraga da bi napravili cuvanje pretraga
+
+### dodavanje vozila:
+- Korisnici koji nisu verifikovani od strane administratora ne mogu da dodaju oglase
+
+### public/index.php:
+- Dodato cuvanje i loadovanje sacuvanih pretraga
+
 ## __24. januar 2023.__ - Uklanjanje i dodavanje oglasa
 
 ### src/handlers/oglas/:

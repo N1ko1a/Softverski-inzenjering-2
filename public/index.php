@@ -26,6 +26,14 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/modules/Search.php";
 
 $search = new Search();
 
+if (isset($_GET["sacuvaj"]) && isset($_SESSION["auth"])) 
+    $search->sacuvaj_pretragu($_GET, $_SESSION["auth"]);
+
 $vozila = $search->filter_results($vozila, $_GET);
+
+$pretrage = null;
+
+if (isset($_SESSION["auth"]))
+    $pretrage = Database_operacije::get_instance()->get_pretraga_list($_SESSION["auth"]);
 
 include($_SERVER["DOCUMENT_ROOT"] . "/../src/templates/index.view.php");

@@ -27,7 +27,17 @@
                 <li>
                     <a href="novioglas.php">POSTAVI OGLAS</a>
                 </li>
-                <?php } ?>
+                <li>
+                    <a href="profil.php">PROFIL</a>
+                </li>
+                <?php }
+                if (isset($_SESSION["admin"])) {
+                    ?>
+                    <li>
+                        <a href="admin.php">ADMIN</a>
+                    </li>
+                    <?php
+                } ?>
             </ul>
         </nav>
     </header>

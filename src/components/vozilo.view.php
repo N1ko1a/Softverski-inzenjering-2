@@ -55,4 +55,15 @@ if (isset($_SESSION["auth"]) && ($_SESSION["auth"] == $oglas->getVlasnik()->get_
 <div class="flex justify-content-center">
     <a style="color: red; font-size: 32px; margin: 0 auto; " href="uklonioglas.php?id=<?php echo $oglas->get_id(); ?>">UKLONI OGLAS</a>
 </div>
-<?php } ?>
+<?php } 
+if (isset($_SESSION["admin"])) {
+?>
+<div class="flex justify-content-center">
+    <a style="color: green; font-size: 32px; margin: 0 auto; " href="odobrenje.php?id=<?php echo $oglas->get_id(); ?>">
+    <?php
+    echo $oglas->getOdobren() ? "POVUCI ODOBRENJE OGLASA" : "ODOBRI OGLAS"; 
+    ?>
+    </a>
+</div>
+<?php
+}

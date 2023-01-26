@@ -31,7 +31,8 @@ class Oglas_input_builder implements Oglas_builder {
     private string $datum_postavke;
     private string $opis_automobila;
     private bool $aktivan;
-    
+	private bool $odobren;
+
 
 	/**
 	 * @param int $id
@@ -256,6 +257,15 @@ class Oglas_input_builder implements Oglas_builder {
         $this->aktivan = $aktivan;
         return $this;
 	}
+
+	/**
+	 * @param bool $odobren
+	 * @return Oglas_builder
+	 */
+	public function set_odobren(bool $odobren): Oglas_builder {
+        $this->odobren = $odobren;
+        return $this;
+	}
 	
 	/**
 	 * @return Oglas
@@ -287,8 +297,9 @@ class Oglas_input_builder implements Oglas_builder {
         $datum_postavke = new DateTime($this->datum_postavke);
         $opis_automobila = $this->opis_automobila;
 		$aktivan = $this->aktivan;
+		$odobren = $this->odobren;
 
-        return new Oglas($id_oglasa, $vlasnik, $marka, $model, $godina_proizvodnje, $cena, $karoserija, $zapremina_motora, $snaga_motora, $emisiona_klasa_motora, $klima, $predjena_kilometraza, $broj_sedista, $broj_vrata, $boja, $poreklo_vozila, $fotografije, $vrsta_goriva, $vrsta_prenosa, $vrsta_pogona, $datum_postavke, $opis_automobila, $aktivan);
+        return new Oglas($id_oglasa, $vlasnik, $marka, $model, $godina_proizvodnje, $cena, $karoserija, $zapremina_motora, $snaga_motora, $emisiona_klasa_motora, $klima, $predjena_kilometraza, $broj_sedista, $broj_vrata, $boja, $poreklo_vozila, $fotografije, $vrsta_goriva, $vrsta_prenosa, $vrsta_pogona, $datum_postavke, $opis_automobila, $aktivan, $odobren);
 		
 	}
 }
