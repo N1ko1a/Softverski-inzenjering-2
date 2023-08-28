@@ -5,8 +5,10 @@
         <input type="text" placeholder="Korisnicko ime" name="username">
         <input type="password" placeholder="Sifra" name="password">
         <?php
+        // proverava da li je registrovan
         if (isset($_GET["reg"]))
             echo "<div style='color: green; font-size: 16px;'>Uspesna registracija! Unesite podatke da biste se prijavili!</div>";
+        //proverava da li je korisnik pokusao da se prijavi
         if (isset($_POST["submit"]))
             echo "<div style='color: red; font-size: 16px;'>Nepravilan unos korisckog imena ili lozinke!</div>";
         ?>

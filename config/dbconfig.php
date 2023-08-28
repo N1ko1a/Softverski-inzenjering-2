@@ -1,5 +1,5 @@
 <?php
 define('DBHOST', "localhost");
-define('DBUSER', "polovni");
-define('DBPWD', "N.(vc/BA5aPnUOBU");
+define('DBUSER', "root");
+define('DBPWD', "");
 define('DBNAME', "polovni");

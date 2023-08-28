@@ -2,8 +2,10 @@
     <form action="profil.php">
         <input type="hidden" name="id" value="<?php echo $profil->get_id() ?>"/>
         <label for="ime" class="naslov">Ime: </label>
+        <!-- //prikazujemo ime uz pomoc funkcije -->
         <input id="ime" name="ime" type="text" class="ime ml-auto" value="<?php echo $profil->get_ime(); ?>" />
-        <button type="submit" name="izmeni_ime">
+        <!-- dugme u obliku check -->
+        <button type="submit" name="izmeni_ime"> 
             <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M4 9.4L0 5.4L1.4 4L4 6.6L10.6 0L12 1.4L4 9.4Z" fill="black" />
             </svg>

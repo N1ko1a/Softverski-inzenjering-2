@@ -2,26 +2,29 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+//startovanje sesije
 session_start();
-
+//ako korisnik nije prijavljen vracamo ga na index
 if (!isset($_SESSION["auth"])) {
     header("Location: index.php");
     exit;
 }
-
+//provera postojanja id-a ako nije prisutan koristi se id trenutnog prijavljenog 
 if (!isset($_GET["id"])) {
     $_GET["id"] = $_SESSION["auth"];
 }
+//proverava se da li korisnik ima pristup profilu, ako id i url nije isti kao trenutni prijavljeni korisnik i korisnik nije administrator preusmerava se na index
 
 if ($_GET["id"] != $_SESSION["auth"] && !isset($_SESSION["admin"])) {
     header("Location: index.php");
     exit;
 }
 
+//postavljanje naslova starnice
 $title = "Polovnjaci - Profil";
-
+//ukljucivanje klase
 require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Database_operacije.php";
-
+//izmena profila na osnovu zahteva
 if (isset($_GET["izmeni_ime"]) && isset($_GET["ime"])) {
     require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/handlers/input/Ime_handler.php";
 
@@ -125,9 +128,9 @@ if (
 
 }
 
-
+//dobavljanje profila korisnika
 $profil = Database_operacije::get_instance()->get_korisnik($_GET["id"]);
 
 
-
+//izgled stranice profil
 include($_SERVER["DOCUMENT_ROOT"] . "/../src/templates/profil.view.php");

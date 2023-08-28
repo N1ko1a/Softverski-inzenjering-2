@@ -34,7 +34,7 @@ class Database_operacije
      */
     private function connect(): mysqli
     {
-        $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
+        $conn = new mysqli(DBHOST.":3307", DBUSER, DBPWD, DBNAME);
         if ($conn->connect_error) {
             die("Neuspesna konekcija " . $conn->connect_error);
         }
