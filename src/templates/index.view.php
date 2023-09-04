@@ -1,7 +1,6 @@
 <?php
 include($_SERVER["DOCUMENT_ROOT"] . "/../src/components/head.view.php");
 include($_SERVER["DOCUMENT_ROOT"] . "/../src/components/navbar.view.php");
-//ako je korisnik ulogovan
 if (isset($_SESSION["auth"]))
     include($_SERVER["DOCUMENT_ROOT"] . "/../src/components/pretrage_modal.view.php");
 include($_SERVER["DOCUMENT_ROOT"] . "/../src/components/pretraga.view.php");

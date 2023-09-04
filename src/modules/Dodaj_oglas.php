@@ -13,6 +13,8 @@ class Dodaj_oglas
             $input["godiste"],
             $input["cena"],
             $input["karoserija"],
+            $input["stanje"],
+
             $input["zapremina"],
             $input["snaga"],
             $input["emisiona_klasa_motora"],
@@ -38,6 +40,8 @@ class Dodaj_oglas
             $input["godiste"],
             $input["cena"],
             $input["karoserija"],
+            $input["stanje"],
+
             $input["zapremina"],
             $input["snaga"],
             $input["emisiona_klasa_motora"],

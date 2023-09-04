@@ -9,6 +9,8 @@ require_once $_SERVER["DOCUMENT_ROOT"] . '/../src/handlers/oglas/Cena_handler.ph
 require_once $_SERVER["DOCUMENT_ROOT"] . '/../src/handlers/oglas/Emisiona_klasa_handler.php';
 require_once $_SERVER["DOCUMENT_ROOT"] . '/../src/handlers/oglas/Godiste_handler.php';
 require_once $_SERVER["DOCUMENT_ROOT"] . '/../src/handlers/oglas/Karoserija_handler.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . '/../src/handlers/oglas/Stanje_handler.php';
+
 require_once $_SERVER["DOCUMENT_ROOT"] . '/../src/handlers/oglas/Klima_handler.php';
 require_once $_SERVER["DOCUMENT_ROOT"] . '/../src/handlers/oglas/Marka_handler.php';
 require_once $_SERVER["DOCUMENT_ROOT"] . '/../src/handlers/oglas/Model_handler.php';
@@ -41,6 +43,8 @@ class Search {
             ->set_next_handler(new Emisiona_klasa_handler())
             ->set_next_handler(new Godiste_handler())
             ->set_next_handler(new Karoserija_handler())
+            ->set_next_handler(new Stanje_handler())
+
             ->set_next_handler(new Klima_handler())
             ->set_next_handler(new Marka_handler())
             ->set_next_handler(new Model_handler())
@@ -115,7 +119,9 @@ class Search {
         $model = isset($input["model"]) ? $input["model"] : "";   
         $cenaod = isset($input["cenaod"]) ? intval($input["cenaod"]) : 0;   
         $cenado = isset($input["cenado"]) ? intval($input["cenado"]) : 0;   
-        $karoserija = isset($input["karoserija"]) ? intval($input["karoserija"]) : 0;   
+        $karoserija = isset($input["karoserija"]) ? intval($input["karoserija"]) : 0; 
+        $stanje = isset($input["stanje"]) ? intval($input["stanje"]) : 0;   
+
         $godisteod = isset($input["godisteod"]) ? intval($input["godisteod"]) : 0;   
         $godistedo = isset($input["godistedo"]) ? intval($input["godistedo"]) : 0;   
         $vrsta_goriva = isset($input["vrsta_goriva"]) ? intval($input["vrsta_goriva"]) : 0;   
@@ -129,7 +135,7 @@ class Search {
         $poreklo_vozila = isset($input["poreklo_vozila"]) ? intval($input["poreklo_vozila"]) : 0;   
         $vrsta_pogona = isset($input["vrsta_pogona"]) ? intval($input["vrsta_pogona"]) : 0;
     
-        Database_operacije::get_instance()->dodaj_sacuvanu_pretragu($_SESSION["auth"], $marka, $model, $cenaod, $cenado, $karoserija, $godisteod, $godistedo, $kilometraza, $vrsta_goriva, $boja_vozila, $vrsta_prenosa, $broj_vrata, $broj_sedista, $emisiona_klasa_motora, $klima, $poreklo_vozila, $vrsta_pogona);    
+        Database_operacije::get_instance()->dodaj_sacuvanu_pretragu($_SESSION["auth"], $marka, $model, $cenaod, $cenado, $karoserija, $stanje, $godisteod, $godistedo, $kilometraza, $vrsta_goriva, $boja_vozila, $vrsta_prenosa, $broj_vrata, $broj_sedista, $emisiona_klasa_motora, $klima, $poreklo_vozila, $vrsta_pogona);    
 
     }
 

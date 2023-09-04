@@ -33,6 +33,8 @@
         <p>Model: <?php echo $oglas->getModel(); ?></p>
         <p>Godina proizvodnje: <?php echo $oglas->getGodina_proizvodnje(); ?></p>
         <p>Karoserija: <?php echo $oglas->getKaroserija()->getNaziv(); ?></p>
+        <p>Stanje: <?php echo $oglas->getStanje()->getNaziv(); ?></p>
+
         <p>Zapremina motora(ccm): <?php echo $oglas->getZapremina_motora(); ?></p>
         <p>Snaga motora(kW): <?php echo $oglas->getSnaga_motora(); ?></p>
         <p>Emisiona klasa motora: <?php echo $oglas->getEmisiona_klasa_motora()->getNaziv(); ?></p>

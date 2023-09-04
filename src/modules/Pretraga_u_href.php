@@ -35,6 +35,10 @@ class Pretraga_u_href {
         if ($this->pretraga->getKaroserija() != 0)
             $str .= "karoserija=" . $this->pretraga->getKaroserija() . "&";
 
+        if ($this->pretraga->getStanje() != 0)
+            $str .= "stanje=" . $this->pretraga->getStanje() . "&";
+
+
         if ($this->pretraga->getGodisteod() != 0)
             $str .= "godisteod=" . $this->pretraga->getKaroserija() . "&";
 

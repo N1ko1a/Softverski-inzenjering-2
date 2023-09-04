@@ -6,15 +6,15 @@ if (!$uspesno_dodavanje) {
 <form class="pretraga" action="novioglas.php" method="post" enctype="multipart/form-data">
 
     <?php
-    //drop menu
     include($_SERVER["DOCUMENT_ROOT"] . '/../src/components/dropdown/marka.view.php');
     ?>
-    <!-- input type -->
+
     <input type="text" name="model" placeholder="Model">
 
     <?php
-    //drop menu
     include($_SERVER["DOCUMENT_ROOT"] . '/../src/components/dropdown/karoserija.view.php');
+    include($_SERVER["DOCUMENT_ROOT"] . '/../src/components/dropdown/stanje.view.php');
+
     ?>
 
     <input type="number" name="godiste" placeholder="Godina proizvodnje">
@@ -22,7 +22,6 @@ if (!$uspesno_dodavanje) {
     <input type="number" name="cena" placeholder="Cena">
 
     <?php
-    //drop menu
     include($_SERVER["DOCUMENT_ROOT"] . '/../src/components/dropdown/vrsta_goriva.view.php');
     ?>
 
@@ -33,7 +32,7 @@ if (!$uspesno_dodavanje) {
     <input type="number" name="snaga" placeholder="Snaga motora">
 
     <?php
-//drop menu
+
     include($_SERVER["DOCUMENT_ROOT"] . '/../src/components/dropdown/boja_vozila.view.php');
 
     include($_SERVER["DOCUMENT_ROOT"] . '/../src/components/dropdown/vrsta_prenosa.view.php');

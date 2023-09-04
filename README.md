@@ -1,7 +1,7 @@
 # Polovnjaci RTSI - Projekat SI2
 
 ## Preduslovi za pokretanje
-- PHP 7+
+- PHP 7.4+
 - PHP gd
 
 ## Studenti

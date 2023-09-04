@@ -15,6 +15,8 @@ class Oglas_input_builder implements Oglas_builder {
     private int $godina_proizvodnje;
     private float $cena;
     private int $karoserija;
+    private int $stanje;
+
     private int $zapremina_motora;
     private int $snaga_motora;
     private int $emisiona_klasa_motora;
@@ -95,6 +97,12 @@ class Oglas_input_builder implements Oglas_builder {
 
     public function set_karoserija(int $karoserija): Oglas_builder {
         $this->karoserija = $karoserija;
+        return $this;
+    }
+
+	
+    public function set_stanje(int $stanje): Oglas_builder {
+        $this->stanje = $stanje;
         return $this;
     }
 	
@@ -281,6 +289,8 @@ class Oglas_input_builder implements Oglas_builder {
         $godina_proizvodnje = $this->godina_proizvodnje;
         $cena = $this->cena;
         $karoserija = $database_operacije->get_specifikacija(new Karoserija(), $this->karoserija);
+        $stanje = $database_operacije->get_specifikacija(new Stanje(), $this->stanje);
+
         $zapremina_motora = $this->zapremina_motora;
         $snaga_motora = $this->snaga_motora;
         $emisiona_klasa_motora = $database_operacije->get_specifikacija(new Emisiona_klasa_motora(), $this->emisiona_klasa_motora);
@@ -299,7 +309,7 @@ class Oglas_input_builder implements Oglas_builder {
 		$aktivan = $this->aktivan;
 		$odobren = $this->odobren;
 
-        return new Oglas($id_oglasa, $vlasnik, $marka, $model, $godina_proizvodnje, $cena, $karoserija, $zapremina_motora, $snaga_motora, $emisiona_klasa_motora, $klima, $predjena_kilometraza, $broj_sedista, $broj_vrata, $boja, $poreklo_vozila, $fotografije, $vrsta_goriva, $vrsta_prenosa, $vrsta_pogona, $datum_postavke, $opis_automobila, $aktivan, $odobren);
+        return new Oglas($id_oglasa, $vlasnik, $marka, $model, $godina_proizvodnje, $cena, $karoserija,$stanje, $zapremina_motora, $snaga_motora, $emisiona_klasa_motora, $klima, $predjena_kilometraza, $broj_sedista, $broj_vrata, $boja, $poreklo_vozila, $fotografije, $vrsta_goriva, $vrsta_prenosa, $vrsta_pogona, $datum_postavke, $opis_automobila, $aktivan, $odobren);
 		
 	}
 }

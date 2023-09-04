@@ -11,6 +11,8 @@ interface Oglas_builder {
     public function set_godina_proizvodnje(int $godina_proizvodnje): Oglas_builder;
     public function set_cena(float $cena): Oglas_builder;
     public function set_karoserija(int $karoserija): Oglas_builder;
+    public function set_stanje(int $stanje): Oglas_builder;
+
     public function set_zapremina_motora(int $zapremina_motora): Oglas_builder;
     public function set_snaga_motora(int $snaga_motora): Oglas_builder;
     public function set_emisiona_klasa_motora(int $emisiona_klasa_motora): Oglas_builder;

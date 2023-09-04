@@ -7,6 +7,8 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Emisiona_klasa_motora
 require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Karoserija.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Klima.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Korisnik.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Stanje.php";
+
 require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Marka.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Poreklo_vozila.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/../src/database/Vrsta_goriva.php";
@@ -22,6 +24,8 @@ class Oglas {
 	private int $godina_proizvodnje;
 	private float $cena;
 	private Karoserija $karoserija;	
+	private Stanje $stanje;	
+
 	private int $zapremina_motora;
 	private int $snaga_motora;
 	private Emisiona_klasa_motora $emisiona_klasa_motora;
@@ -49,6 +53,8 @@ class Oglas {
 	 * @param int $godina_proizvodnje
 	 * @param float $cena
 	 * @param Karoserija $karoserija
+	 * @param Stanje $stanje
+	 * 
 	 * @param int $zapremina_motora
 	 * @param int $snaga_motora
 	 * @param Emisiona_klasa_motora $emisiona_klasa_motora
@@ -67,7 +73,7 @@ class Oglas {
 	 * @param bool $aktivan
 	 * @param bool $odobren
 	 */
-	public function __construct(int $id_oglasa, Korisnik $vlasnik, Marka $marka, string $model, int $godina_proizvodnje, float $cena, Karoserija $karoserija, int $zapremina_motora, int $snaga_motora, Emisiona_klasa_motora $emisiona_klasa_motora, Klima $klima, float $predjena_kilometraza, Broj_sedista $broj_sedista, Broj_vrata $broj_vrata, Boja_vozila $boja, Poreklo_vozila $poreklo_vozila, string $fotografije, Vrsta_goriva $vrsta_goriva, Vrsta_prenosa $vrsta_prenosa, Vrsta_pogona $vrsta_pogona, DateTime $datum_postavke, string $opis_automobila, bool $aktivan, bool $odobren) {
+	public function __construct(int $id_oglasa, Korisnik $vlasnik, Marka $marka, string $model, int $godina_proizvodnje, float $cena, Karoserija $karoserija,Stanje $stanje, int $zapremina_motora, int $snaga_motora, Emisiona_klasa_motora $emisiona_klasa_motora, Klima $klima, float $predjena_kilometraza, Broj_sedista $broj_sedista, Broj_vrata $broj_vrata, Boja_vozila $boja, Poreklo_vozila $poreklo_vozila, string $fotografije, Vrsta_goriva $vrsta_goriva, Vrsta_prenosa $vrsta_prenosa, Vrsta_pogona $vrsta_pogona, DateTime $datum_postavke, string $opis_automobila, bool $aktivan, bool $odobren) {
 		$this->id_oglasa = $id_oglasa;
 		$this->vlasnik = $vlasnik;
 		$this->marka = $marka;
@@ -75,6 +81,8 @@ class Oglas {
 		$this->godina_proizvodnje = $godina_proizvodnje;
 		$this->cena = $cena;
 		$this->karoserija = $karoserija;
+		$this->stanje = $stanje;
+
 		$this->zapremina_motora = $zapremina_motora;
 		$this->snaga_motora = $snaga_motora;
 		$this->emisiona_klasa_motora = $emisiona_klasa_motora;
@@ -141,6 +149,13 @@ class Oglas {
 	 */
 	public function getKaroserija(): Karoserija {
 		return $this->karoserija;
+	}
+
+	/**
+	 * @return Stanje
+	 */
+	public function getStanje(): Stanje {
+		return $this->stanje;
 	}
 	
 	/**

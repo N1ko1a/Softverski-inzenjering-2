@@ -9,6 +9,8 @@ class Sacuvana_pretraga {
     private int $cenaod;
     private int $cenado;
     private int $karoserija;
+    private int $stanje;
+
     private int $godisteod;
     private int $godistedo;
     private int $kilometraza;
@@ -30,6 +32,8 @@ class Sacuvana_pretraga {
      * @param int $cenaod
      * @param int $cenado
      * @param int $karoserija
+     * @param int $stanje
+	 * 
      * @param int $godisteod
      * @param int $godistedo
      * @param int $kilometraza
@@ -43,7 +47,7 @@ class Sacuvana_pretraga {
      * @param int $poreklo
      * @param int $pogon
      */
-    public function __construct(int $id, int $korisnik, int $marka, string $model, int $cenaod, int $cenado, int $karoserija, int $godisteod, int $godistedo, int $kilometraza, int $gorivo, int $boja, int $prenos, int $vrata, int $sedista, int $klasa, int $klima, int $poreklo, int $pogon) {
+    public function __construct(int $id, int $korisnik, int $marka, string $model, int $cenaod, int $cenado, int $karoserija,int $stanje, int $godisteod, int $godistedo, int $kilometraza, int $gorivo, int $boja, int $prenos, int $vrata, int $sedista, int $klasa, int $klima, int $poreklo, int $pogon) {
     	$this->id = $id;
     	$this->korisnik = $korisnik;
     	$this->marka = $marka;
@@ -51,6 +55,8 @@ class Sacuvana_pretraga {
     	$this->cenaod = $cenaod;
     	$this->cenado = $cenado;
     	$this->karoserija = $karoserija;
+    	$this->stanje = $stanje;
+
     	$this->godisteod = $godisteod;
     	$this->godistedo = $godistedo;
     	$this->kilometraza = $kilometraza;
@@ -114,6 +120,12 @@ class Sacuvana_pretraga {
 		return $this->karoserija;
 	}
 	
+		/**
+	 * @return int
+	 */
+	public function getStanje(): int {
+		return $this->stanje;
+	}
 	/**
 	 * @return int
 	 */

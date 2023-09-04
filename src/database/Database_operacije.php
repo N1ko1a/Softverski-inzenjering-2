@@ -184,6 +184,8 @@ class Database_operacije
                 $i["cenaod"],
                 $i["cenado"],
                 $i["id_karoserije"],
+                $i["id_stanja"],
+
                 $i["godisteod"],
                 $i["godistedo"],
                 $i["kilometrazado"],
@@ -317,6 +319,8 @@ class Database_operacije
                 ->set_godina_proizvodnje($i["godina_proizvodnje"])
                 ->set_cena($i["cena"])
                 ->set_karoserija($i["karoserija"])
+                ->set_stanje($i["stanje"])
+
                 ->set_zapremina_motora($i["zapremina_motora(ccm)"])
                 ->set_snaga_motora($i["snaga_motora(kw)"])
                 ->set_emisiona_klasa_motora($i["emisiona_klasa_motora"])
@@ -405,6 +409,8 @@ class Database_operacije
                     ->set_godina_proizvodnje($i["godina_proizvodnje"])
                     ->set_cena($i["cena"])
                     ->set_karoserija($i["karoserija"])
+                    ->set_stanje($i["stanje"])
+
                     ->set_zapremina_motora($i["zapremina_motora(ccm)"])
                     ->set_snaga_motora($i["snaga_motora(kw)"])
                     ->set_emisiona_klasa_motora($i["emisiona_klasa_motora"])
@@ -442,6 +448,8 @@ class Database_operacije
      * @param int $godina_proizvodnje
      * @param float $cena
      * @param int $karoserija
+     * @param int $stanje
+     * 
      * @param int $zapremina_motora
      * @param int $snaga_motora
      * @param int $emisiona_klasa_motora
@@ -457,11 +465,11 @@ class Database_operacije
      * @param string $opis
      * @return int
      */
-    public function dodaj_oglas(int $vlasnik, int $marka, string $model, int $godina_proizvodnje, float $cena, int $karoserija, int $zapremina_motora, int $snaga_motora, int $emisiona_klasa_motora, int $klima, float $kilometraza, int $broj_sedista, int $broj_vrata, int $boja, int $poreklo_vozila, int $vrsta_goriva, int $vrsta_prenosa, int $vrsta_pogona, string $opis): int
+    public function dodaj_oglas(int $vlasnik, int $marka, string $model, int $godina_proizvodnje, float $cena, int $karoserija,int $stanje, int $zapremina_motora, int $snaga_motora, int $emisiona_klasa_motora, int $klima, float $kilometraza, int $broj_sedista, int $broj_vrata, int $boja, int $poreklo_vozila, int $vrsta_goriva, int $vrsta_prenosa, int $vrsta_pogona, string $opis): int
     {
 
-        $sql = "INSERT INTO oglas (vlasnik, marka, model, godina_proizvodnje, cena, karoserija, `zapremina_motora(ccm)`, `snaga_motora(kw)`, emisiona_klasa_motora, klima, predjena_kilometraza, broj_sedista, broj_vrata, boja, poreklo_vozila, fotografije, vrsta_goriva, vrsta_prenosa, vrsta_pogona, datum_postavke, opis_automobila, aktivan) VALUES 
-        ($vlasnik, $marka, '$model', $godina_proizvodnje, $cena, $karoserija, $zapremina_motora, $snaga_motora, $emisiona_klasa_motora, $klima, $kilometraza, $broj_sedista, $broj_vrata, $boja, $poreklo_vozila, '', $vrsta_goriva, $vrsta_prenosa, $vrsta_pogona, NOW(), '$opis', 1)";
+        $sql = "INSERT INTO oglas (vlasnik, marka, model, godina_proizvodnje, cena, karoserija,stanje, `zapremina_motora(ccm)`, `snaga_motora(kw)`, emisiona_klasa_motora, klima, predjena_kilometraza, broj_sedista, broj_vrata, boja, poreklo_vozila, fotografije, vrsta_goriva, vrsta_prenosa, vrsta_pogona, datum_postavke, opis_automobila, aktivan) VALUES 
+        ($vlasnik, $marka, '$model', $godina_proizvodnje, $cena, $karoserija,$stanje, $zapremina_motora, $snaga_motora, $emisiona_klasa_motora, $klima, $kilometraza, $broj_sedista, $broj_vrata, $boja, $poreklo_vozila, '', $vrsta_goriva, $vrsta_prenosa, $vrsta_pogona, NOW(), '$opis', 1)";
 
         $conn = $this->connect();
 
@@ -497,6 +505,8 @@ class Database_operacije
                 $pretraga = new Sacuvana_pretraga(
                     $i["id_pretrage"],
                     $i["id_korisnika"],
+                    $i["id_stanja"],
+
                     $i["id_marke"],
                     $i["model"],
                     $i["cenaod"],
@@ -694,9 +704,9 @@ class Database_operacije
         $conn->close();
     }
 
-    public function dodaj_sacuvanu_pretragu(int $id_korisnika, ?int $id_marke, ?string $model, ?int $cenaod, ?int $cenado, ?int $id_karoserije, ?int $godisteod, ?int $godistedo, ?int $kilometrazado, ?int $id_goriva, ?int $id_boje, ?int $id_prenosa, ?int $id_vrata, ?int $id_sedista, ?int $id_klase, ?int $id_klime, ?int $id_porekla, ?int $id_pogona) {
+    public function dodaj_sacuvanu_pretragu(int $id_korisnika, ?int $id_marke, ?string $model, ?int $cenaod, ?int $cenado, ?int $id_karoserije,?int $id_stanja, ?int $godisteod, ?int $godistedo, ?int $kilometrazado, ?int $id_goriva, ?int $id_boje, ?int $id_prenosa, ?int $id_vrata, ?int $id_sedista, ?int $id_klase, ?int $id_klime, ?int $id_porekla, ?int $id_pogona) {
 
-        $sql = "INSERT INTO pretrage (`id_korisnika`, `id_marke`, `model`, `cenaod`, `cenado`, `id_karoserije`, `godisteod`, `godistedo`, `kilometrazado`, `id_goriva`, `id_boje`, `id_prenosa`, `id_vrata`, `id_sedista`, `id_klase`, `id_klime`, `id_porekla`, `id_pogona`) VALUES ($id_korisnika,$id_marke,'$model',$cenaod,$cenado,$id_karoserije,$godisteod,$godistedo,$kilometrazado,$id_goriva,$id_boje,$id_prenosa,$id_vrata,$id_sedista,$id_klase,$id_klime,$id_porekla,$id_pogona)";
+        $sql = "INSERT INTO pretrage (`id_korisnika`, `id_marke`, `model`, `cenaod`, `cenado`, `id_karoserije`,`id_stanja`, `godisteod`, `godistedo`, `kilometrazado`, `id_goriva`, `id_boje`, `id_prenosa`, `id_vrata`, `id_sedista`, `id_klase`, `id_klime`, `id_porekla`, `id_pogona`) VALUES ($id_korisnika,$id_marke,'$model',$cenaod,$cenado,$id_karoserije,$id_stanja,$godisteod,$godistedo,$kilometrazado,$id_goriva,$id_boje,$id_prenosa,$id_vrata,$id_sedista,$id_klase,$id_klime,$id_porekla,$id_pogona)";
 
         $conn = $this->connect();
 

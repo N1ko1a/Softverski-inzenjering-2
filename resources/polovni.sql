@@ -149,6 +149,23 @@ INSERT INTO `karoserija` (`id_karoserije`, `vrsta`) VALUES
 (7, 'Monovolumen'),
 (8, 'Pickup');
 
+
+
+
+CREATE TABLE `stanje` (
+  `id_stanja` int(11) NOT NULL,
+  `vrsta` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+--
+-- Dumping data for table `karoserija`
+--
+
+INSERT INTO `stanje` (`id_stanja`, `vrsta`) VALUES
+(1, 'Nije ostecen'),
+(2, 'Ostecen u voznom stanju'),
+(3, 'Ostecen nije u voznom stanju');
+
 -- --------------------------------------------------------
 
 --
@@ -243,6 +260,8 @@ CREATE TABLE `oglas` (
   `godina_proizvodnje` year(4) NOT NULL,
   `cena` double NOT NULL,
   `karoserija` int(11) NOT NULL,
+  `stanje` int(11) NOT NULL,
+
   `zapremina_motora(ccm)` int(11) NOT NULL,
   `snaga_motora(kw)` int(11) NOT NULL,
   `emisiona_klasa_motora` int(11) NOT NULL,
@@ -266,10 +285,10 @@ CREATE TABLE `oglas` (
 -- Dumping data for table `oglas`
 --
 
-INSERT INTO `oglas` (`id_oglasa`, `vlasnik`, `marka`, `model`, `godina_proizvodnje`, `cena`, `karoserija`, `zapremina_motora(ccm)`, `snaga_motora(kw)`, `emisiona_klasa_motora`, `klima`, `predjena_kilometraza`, `broj_sedista`, `broj_vrata`, `boja`, `poreklo_vozila`, `fotografije`, `vrsta_goriva`, `vrsta_prenosa`, `vrsta_pogona`, `datum_postavke`, `opis_automobila`, `aktivan`, `odobren`) VALUES
-(3, 3, 9, 'Golf 5 1.9TDI BKC', 2004, 3800, 4, 1896, 77, 4, 3, 269000, 4, 2, 6, 1, '3', 4, 2, 1, '2023-01-11', 'Auto u dobrom stanju, vozi se svaki dan. Nije NOV, polovan je, ali dosta ocuvan.\r\nNove zimske gume su na fabrickim alu felnama. Nije truo, bez korozije, sto se moze reci, zdrav kao koska!\r\nUradjen mali servis pre 200km.\r\nNajbolji motor 1.9TDI 77kw/105ks - BKC oznaka motora.\r\nGolf za svaku preporuku, registrovan do Avgusta 2023. godine.\r\n', 1, 0),
-(4, 5, 8, 'A3 1.4 g tron s line', 2015, 15350, 4, 1395, 81, 6, 3, 175000, 4, 2, 6, 2, '4', 3, 4, 1, '2023-01-11', 'auto u fabrickom stanju\r\nbez ulaganja\r\nza svaku preporuku', 1, 1),
-(8, 3, 2, 'X5 M Laser/Head up/Pano', 2021, 93990, 6, 2993, 210, 6, 3, 20233, 6, 2, 1, 3, '8', 7, 5, 3, '2023-01-24', 'Uvoz Nemacka.\r\nApsolutno perfektno stanje. Najlepse BMW M 22\" crne felne koje ovaj model ima u ponudi.\r\nVrlo unikatan i prelepa Alpin Bela exterier boja.\r\nAuto bez ikakve mane, pregled svakakve vrste je moguc...', 1, 1);
+INSERT INTO `oglas` (`id_oglasa`, `vlasnik`, `marka`, `model`, `godina_proizvodnje`, `cena`, `karoserija`,`stanje`, `zapremina_motora(ccm)`, `snaga_motora(kw)`, `emisiona_klasa_motora`, `klima`, `predjena_kilometraza`, `broj_sedista`, `broj_vrata`, `boja`, `poreklo_vozila`, `fotografije`, `vrsta_goriva`, `vrsta_prenosa`, `vrsta_pogona`, `datum_postavke`, `opis_automobila`, `aktivan`, `odobren`) VALUES
+(3, 3, 9, 'Golf 5 1.9TDI BKC', 2004, 3800, 4, 2, 1896, 77, 4, 3, 269000, 4, 2, 6, 1, '3', 4, 2, 1, '2023-01-11', 'Auto u dobrom stanju, vozi se svaki dan. Nije NOV, polovan je, ali dosta ocuvan.\r\nNove zimske gume su na fabrickim alu felnama. Nije truo, bez korozije, sto se moze reci, zdrav kao koska!\r\nUradjen mali servis pre 200km.\r\nNajbolji motor 1.9TDI 77kw/105ks - BKC oznaka motora.\r\nGolf za svaku preporuku, registrovan do Avgusta 2023. godine.\r\n', 1, 0),
+(4, 5, 8, 'A3 1.4 g tron s line', 2015, 15350, 4, 2, 1395, 81, 6, 3, 175000, 4, 2, 6, 2, '4', 3, 4, 1, '2023-01-11', 'auto u fabrickom stanju\r\nbez ulaganja\r\nza svaku preporuku', 1, 1),
+(8, 3, 2, 'X5 M Laser/Head up/Pano', 2021, 93990, 6, 3, 2993, 210, 6, 3, 20233, 6, 2, 1, 3, '8', 7, 5, 3, '2023-01-24', 'Uvoz Nemacka.\r\nApsolutno perfektno stanje. Najlepse BMW M 22\" crne felne koje ovaj model ima u ponudi.\r\nVrlo unikatan i prelepa Alpin Bela exterier boja.\r\nAuto bez ikakve mane, pregled svakakve vrste je moguc...', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -305,6 +324,8 @@ CREATE TABLE `pretrage` (
   `cenaod` int(11) NOT NULL,
   `cenado` int(11) NOT NULL,
   `id_karoserije` int(11) NOT NULL,
+  `id_stanja` int(11) NOT NULL,
+
   `godisteod` int(11) NOT NULL,
   `godistedo` int(11) NOT NULL,
   `kilometrazado` int(11) NOT NULL,
@@ -323,9 +344,9 @@ CREATE TABLE `pretrage` (
 -- Dumping data for table `pretrage`
 --
 
-INSERT INTO `pretrage` (`id_pretrage`, `id_korisnika`, `id_marke`, `model`, `cenaod`, `cenado`, `id_karoserije`, `godisteod`, `godistedo`, `kilometrazado`, `id_goriva`, `id_boje`, `id_prenosa`, `id_vrata`, `id_sedista`, `id_klase`, `id_klime`, `id_porekla`, `id_pogona`) VALUES
-(8, 3, 2, 'x5', 90000, 100000, 6, 2000, 2023, 521251, 7, 1, 5, 2, 6, 6, 3, 3, 3),
-(9, 3, 5, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+INSERT INTO `pretrage` (`id_pretrage`, `id_korisnika`, `id_marke`, `model`, `cenaod`, `cenado`, `id_karoserije`,`id_stanja`, `godisteod`, `godistedo`, `kilometrazado`, `id_goriva`, `id_boje`, `id_prenosa`, `id_vrata`, `id_sedista`, `id_klase`, `id_klime`, `id_porekla`, `id_pogona`) VALUES
+(8, 3, 2, 'x5', 90000, 100000, 6, 2,2000, 2023, 521251, 7, 1, 5, 2, 6, 6, 3, 3, 3),
+(9, 3, 5, '', 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -429,6 +450,9 @@ ALTER TABLE `emisiona_klasa_motora`
 ALTER TABLE `karoserija`
   ADD PRIMARY KEY (`id_karoserije`);
 
+ALTER TABLE `stanje`
+  ADD PRIMARY KEY (`id_stanja`);
+
 --
 -- Indexes for table `klima`
 --
@@ -455,6 +479,8 @@ ALTER TABLE `oglas`
   ADD KEY `vlasnik` (`vlasnik`),
   ADD KEY `marka` (`marka`),
   ADD KEY `karoserija` (`karoserija`),
+  ADD KEY `stanje` (`stanje`),
+
   ADD KEY `emisiona_klasa_motora` (`emisiona_klasa_motora`),
   ADD KEY `klima` (`klima`),
   ADD KEY `broj_vrata` (`broj_vrata`),
@@ -477,6 +503,8 @@ ALTER TABLE `poreklo_vozila`
 ALTER TABLE `pretrage`
   ADD PRIMARY KEY (`id_pretrage`),
   ADD KEY `id_korisnika` (`id_korisnika`),
+  ADD KEY `id_stanja` (`id_stanja`),
+
   ADD KEY `id_marke` (`id_marke`),
   ADD KEY `id_karoserije` (`id_karoserije`),
   ADD KEY `id_goriva` (`id_goriva`),
@@ -541,6 +569,10 @@ ALTER TABLE `emisiona_klasa_motora`
 ALTER TABLE `karoserija`
   MODIFY `id_karoserije` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
+ALTER TABLE `stanje`
+  MODIFY `id_stanja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 --
 -- AUTO_INCREMENT for table `klima`
 --
@@ -552,6 +584,9 @@ ALTER TABLE `klima`
 --
 ALTER TABLE `korisnik`
   MODIFY `id_korisnika` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+ALTER TABLE `stanje`
+  MODIFY `id_stanja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `marka`
@@ -614,6 +649,8 @@ ALTER TABLE `oglas`
   ADD CONSTRAINT `oglas_ibfk_6` FOREIGN KEY (`klima`) REFERENCES `klima` (`id_klime`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `oglas_ibfk_7` FOREIGN KEY (`poreklo_vozila`) REFERENCES `poreklo_vozila` (`id_porekla`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `oglas_ibfk_8` FOREIGN KEY (`karoserija`) REFERENCES `karoserija` (`id_karoserije`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `oglas_ibfk_13` FOREIGN KEY (`stanje`) REFERENCES `stanje` (`id_stanja`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+
   ADD CONSTRAINT `oglas_ibfk_9` FOREIGN KEY (`vrsta_prenosa`) REFERENCES `vrsta_prenosa` (`id_prenosa`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
